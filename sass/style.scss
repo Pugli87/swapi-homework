@@ -41,7 +41,6 @@ a{
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   &__title{
     margin-top: 10px;
@@ -101,11 +100,9 @@ a{
 }
 
 .section{
-  min-height: 100vh;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .nav {
@@ -283,6 +280,9 @@ a{
   }
   
   .footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
     display: flex;
     justify-content: center;
     padding: 20px;
