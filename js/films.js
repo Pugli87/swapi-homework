@@ -1,60 +1,51 @@
-// function fetchFilm() {
-//   const apiUrl = 'https://swapi.dev/api/films';
-  
-//   fetch(apiUrl)
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data)
-//       const elements = [
-//         { label: 'Título', value: data.title },
-//         { label: 'Episodio', value: data.episode_id },
-//         { label: 'Director', value: data.director },
-//         { label: 'Productor', value: data.producer },
-//         { label: 'Fecha de lanzamiento', value: data.release_date },
-//       ];
+import { showGlobalLoading, hideGlobalLoading } from './app.js';
 
-//       const detailsContainer = document.getElementById('dataContainer');
-//       detailsContainer.innerHTML = ''; // Limpiar el contenedor existente
-//       detailsContainer.appendChild(listElement);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// }
-
-// const fetchFilmDetailsBtn = document.getElementById('fetchFilmDetailsBtn');
-// fetchFilmDetailsBtn.addEventListener('click', () => {
-//   const filmId = 1; // Cambia esto al ID de la película que desees obtener
-//   fetchFilmDetails(filmId);
-// });
-
-// Función para obtener la lista de todas las películas
 function fetchAllFilms() {
+  const filmsList = document.getElementById("filmsList");
+  const modal = document.getElementById("myModal");
+  const movieDescription = document.getElementById("movieDescription");
+  const closeButton = document.getElementById("close");
   const apiUrl = "https://swapi.dev/api/films/";
+
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+  
+  showGlobalLoading();
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      const filmsList = document.getElementById("filmsList");
-
-      // Itera a través de las películas y agrega solo el título y el director a la tabla
       data.results.forEach((film) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-                <td>${film.title}</td>
-                <td>${film.director}</td>
-                <td>
-                  <button type="button">...</button>
-              </td>
-            `;
+        const row = document.createElement("li");
+        row.classList.add("films__item");
+        const button = document.createElement("button");
+        
+        button.textContent = film.title;
+        button.classList.add("films__btn");
+        button.addEventListener("click", () => {
+            // Mostrar el modal
+            modal.style.display = "block";
+
+            // Mostrar la descripción de la película en el modal
+            movieDescription.textContent = film.opening_crawl;
+        });
+
+        row.appendChild(button);
         filmsList.appendChild(row);
       });
+      hideGlobalLoading();
     })
     .catch((error) => {
-      console.error("Error:", error);
+        console.error("Error:", error);
     });
 }
 
-// Llama a la función para obtener todas las películas
+
 fetchAllFilms();

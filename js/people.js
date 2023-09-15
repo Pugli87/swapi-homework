@@ -1,59 +1,88 @@
-// function fetchFilm() {
-//   const apiUrl = 'https://swapi.dev/api/people';
+
+import { showGlobalLoading, hideGlobalLoading } from './app.js';
+let currentPage = 1;
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+const span = document.getElementById("page");
+
+function nextPage() {
+  currentPage++;
+  fetchPeople(currentPage);
+  span.textContent = currentPage;
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    span.textContent = currentPage;
+    fetchPeople(currentPage);
+  }
+}
+
+prev.addEventListener("click", prevPage);
+
+next.addEventListener("click", nextPage);
+
+
+function fetchPeople(page) {
+  const peopleList = document.getElementById("peopleList");
+  const modal = document.getElementById("myModal");
+  const closeButton = document.getElementById("close");
+  const apiUrl = `https://swapi.dev/api/people/?page=${page}`;
+  const peopleName = document.getElementById("name");
+  const birth_year = document.getElementById("birth_year");
+  const eye_color = document.getElementById("eye_color");
+  const gender = document.getElementById("gender");
+  const hair_color = document.getElementById("hair_color");
+  const height = document.getElementById("height");
   
-//   fetch(apiUrl)
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data)
-//       const elements = [
-//         { label: 'Título', value: data.title },
-//         { label: 'Episodio', value: data.episode_id },
-//         { label: 'Director', value: data.director },
-//         { label: 'Productor', value: data.producer },
-//         { label: 'Fecha de lanzamiento', value: data.release_date },
-//       ];
-
-//       const detailsContainer = document.getElementById('dataContainer');
-//       detailsContainer.innerHTML = ''; // Limpiar el contenedor existente
-//       detailsContainer.appendChild(listElement);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// }
-
-// const fetchFilmDetailsBtn = document.getElementById('fetchFilmDetailsBtn');
-// fetchFilmDetailsBtn.addEventListener('click', () => {
-//   const filmId = 1; // Cambia esto al ID de la película que desees obtener
-//   fetchFilmDetails(filmId);
-// });
-
-// Función para obtener la lista de todas las películas
-function fetchAllPeople() {
-  const apiUrl = "https://swapi.dev/api/people/";
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+  
+  showGlobalLoading();
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
+      span.textContent = currentPage;
       console.log(data)
-      const peopleList = document.getElementById("peopleList");
-
-      // Itera a través de las películas y agrega solo el título y el director a la tabla
+      peopleList.innerHTML = "";
       data.results.forEach((people) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-                <td>${people.name}</td>
-                <td>
-                  <button type="button">...</button>
-              </td>
-            `;
+        const row = document.createElement("li");
+        row.classList.add("people__item");
+        const button = document.createElement("button");
+        
+        button.textContent = people.name;
+        button.classList.add("people__btn");
+        button.addEventListener("click", () => {
+          // Mostrar el modal
+          modal.style.display = "block";
+
+          // Mostrar la descripción de la película en el modal
+          peopleName.textContent = people.name;
+          birth_year.textContent = people.birth_year;
+          eye_color.textContent = people.eye_color;
+          gender.textContent = people.gender;
+          hair_color.textContent = people.hair_color;
+          height.textContent = people.height;
+        });
+
+        row.appendChild(button);
         peopleList.appendChild(row);
       });
+      hideGlobalLoading();
     })
     .catch((error) => {
-      console.error("Error:", error);
+        console.error("Error:", error);
     });
 }
 
-// Llama a la función para obtener todas las películas
-fetchAllPeople();
+
+fetchPeople(currentPage);
