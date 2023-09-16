@@ -1,0 +1,25 @@
+.footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);;
+  &__btn{
+    color: rgb(255, 217, 0);
+    padding: 5px 10px;
+    display: flex;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  &__span{
+    color: rgb(255, 217, 0);
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+  }
+}

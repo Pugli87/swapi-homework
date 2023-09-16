@@ -1,0 +1,48 @@
+.people{
+  margin: 20px auto;
+
+  &__list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &__spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid rgb(255, 217, 0);
+    border-bottom: 4px solid rgb(255, 0, 0);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  &__item{
+    flex-basis: calc(( 100% - 20px ) / 3);
+    
+    
+  }
+  
+  &__btn{
+    width: 100%;
+    font-size: 12px;
+    color: rgb(255, 217, 0);
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    cursor: pointer;
+    &:hover {
+      scale: 1.05;
+      border: 1px solid rgb(255, 217, 0);
+    }
+  }
+}
