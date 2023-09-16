@@ -7,6 +7,7 @@
 body {
   background-color: lightgrey;
   color: lightgray;
+  font-size: 10px;
 }
 
 img {
@@ -26,11 +27,11 @@ a {
 
 .active {
   color: rgb(255, 217, 0);
-  scale: 1.1;
+  outline: 1px solid rgb(255, 217, 0);
 }
 
 .section {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -62,7 +63,7 @@ a {
   min-width: 320px;
   margin: 0 auto;
   min-height: 100vh;
-  background-image: url(/imagenes/fondo.png);
+  background-image: url(../../imagenes//fondo.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -91,7 +92,7 @@ a {
 }
 .Header__cont-text {
   color: lightgray;
-  font-size: 12px;
+  font-size: 10px;
 }
 .Header__nav {
   display: flex;
@@ -108,7 +109,6 @@ a {
   display: flex;
   cursor: pointer;
   padding: 2px 8px;
-  border: 1px solid;
   border-radius: 15px;
 }
 .Header__link:hover {
@@ -123,7 +123,7 @@ a {
   bottom: 0;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .footer__pag {
@@ -191,9 +191,9 @@ a {
 }
 .people__btn {
   width: 100%;
-  font-size: 12px;
-  color: rgb(255, 217, 0);
-  padding: 5px 10px;
+  font-size: 10px;
+  color: lightgray;
+  padding: 5px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   cursor: pointer;
@@ -209,7 +209,7 @@ a {
 }
 .nav__cont-text {
   color: lightgray;
-  font-size: 12px;
+  font-size: 10px;
 }
 .nav__nav {
   display: flex;
@@ -227,7 +227,7 @@ a {
 .nav__link {
   display: flex;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   padding: 2px 8px;
   border: 1px solid black;
   border-radius: 10px;
@@ -274,10 +274,10 @@ a {
   width: 100%;
   font-size: 10px;
   cursor: pointer;
-  padding: 3px 6px;
+  padding: 5px;
   border-radius: 15px;
   border: 1px solid black;
-  color: rgb(255, 217, 0);
+  color: lightgray;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .films__btn:hover {
