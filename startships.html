@@ -34,7 +34,7 @@
               <a href="./films.html" class="nav__link">Films</a>
             </li>
             <li class="nav__item">
-              <a href="./people.html" class="nav__link">People</a>
+              <a href="./people.html" class="nav__link active">People</a>
             </li>
             <li class="nav__item">
               <a href="./planets.html" class="nav__link">Planets</a>
@@ -43,7 +43,7 @@
               <a href="./spacies.html" class="nav__link">Species</a>
             </li>
             <li class="nav__item">
-              <a href="./startships.html" class="nav__link active">Startships</a>
+              <a href="./startships.html" class="nav__link">Startships</a>
             </li>
             <li class="nav__item">
               <a href="./vehicles.html" class="nav__link">Vehicles</a>
@@ -52,9 +52,11 @@
         </nav>
 
         <h2 class="contain__title">Startships</h2>
-        <div class="planets">
-          <ul id="planetsList" class="planets__list"></ul>
+        <div class="people">
+          <div class="spinner" id="globalLoading"></div>
+          <ul id="peopleList" class="people__list"></ul>
         </div>
+
         <div id="myModal" class="modal">
           <div class="modal__cont">
             <span class="modal__close" id="close">&times;</span>
@@ -71,7 +73,6 @@
 
       <footer class="footer">
         <div class="footer__pag">
-          
           <button type="button" id="prev" class="footer__btn">&#171</button>
           <span id="page" class="footer__span"></span>
           <button type="button" id="next" class="footer__btn footer__btn--next">
@@ -82,6 +83,6 @@
     </div>
 
     <script type="module" src="./js/app.js"></script>
-    <script type="module" src="./js/planets.js"></script>
+    <script type="module" src="./js/people.js"></script>
   </body>
 </html>
