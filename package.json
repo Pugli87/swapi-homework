@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "serve": "^14.2.1"
-  },
   "devDependencies": {
     "sass": "^1.67.0"
   }

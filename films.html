@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Films</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="contain">
       <header class="Header">
         <div class="Header__cont-text">
-          <a href="/index.html">
+          <a href="./index.html">
             <h1 class="Header__title">swapi</h1>
             <p class="Header__p">The Star Wars API</p>
           </a>
@@ -18,54 +18,59 @@
         <nav class="Header__nav">
           <ul class="Header__list">
             <li class="Header__item">
-              <a href="/index.html" class="Header__link active">Home</a>
+              <a href="./index.html" class="Header__link active">Home</a>
             </li>
             <li class="Header__item">
-              <a href="/search.html" class="Header__link">Search</a>
+              <a href="./search.html" class="Header__link">Search</a>
             </li>
           </ul>
         </nav>
       </header>
-      <section class="section">
-        <nav class="section">
-          <ul class="section__list">
-            <li class="section__item">
-              <a href="/films.html" class="section__link active">Films</a>
-            </li>
-            <li class="section__item">
-              <a href="/people.html" class="section__link">people</a>
-            </li>
-            <li class="section__item">
-              <a href="/planets.html" class="section__link">Planets</a>
-            </li>
-            <li class="section__item">
-              <a href="/spacies.html" class="section__link">species</a>
-            </li>
-            <li class="section__item">
-              <a href="/startships.html" class="section__link">Startships</a>
-            </li>
-            <li class="section__item">
-              <a href="/vehicles.html" class="section__link">Vehicles</a>
-            </li>
-          </ul>
-        </nav>
 
-        <h2 class="contain__title">Films</h2>
-      </section>
-      <section class="films">
-        <ul id="filmsList" class="films__list"></ul>
-        <div class="films__spinner" id="globalLoading"></div>
-      </section>
-      <div id="myModal" class="modal">
-        <div class="modal__cont">
-          <span class="modal__close" id="close">&times;</span>
-          <h2 class="modal__title">Detalles de la película</h2>
-          <p id="movieDescription"></p>
-        </div>
-      </div>
+      <main>
+        <section class="section">
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="./films.html" class="nav__link active">Films</a>
+              </li>
+              <li class="nav__item">
+                <a href="./people.html" class="nav__link">People</a>
+              </li>
+              <li class="nav__item">
+                <a href="./planets.html" class="nav__link">Planets</a>
+              </li>
+              <li class="nav__item">
+                <a href="./spacies.html" class="nav__link">Species</a>
+              </li>
+              <li class="nav__item">
+                <a href="./startships.html" class="nav__link">Startships</a>
+              </li>
+              <li class="nav__item">
+                <a href="./vehicles.html" class="nav__link">Vehicles</a>
+              </li>
+            </ul>
+          </nav>
+          <h2 class="contain__title">Films</h2>
+        </section>
+
+        <section class="section films">
+          <ul id="filmsList" class="films__list"></ul>
+          <div class="spinner" id="globalLoading"></div>
+          <div id="myModal" class="modal">
+            <div class="modal__cont">
+              <span class="modal__close" id="close">&times;</span>
+              <h2 class="modal__title">Detalles de la película</h2>
+              <p id="movieDescription"></p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"></footer>
     </div>
 
-    <script type="module" src="/js/app.js"></script>
-    <script type="module" src="/js/films.js"></script>
+    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/films.js"></script>
   </body>
 </html>

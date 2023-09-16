@@ -1,11 +1,16 @@
 .films{
-  margin: 20px auto;
+  margin-top: 100px;
 
   &__list{
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+  }
+  
+  &__item{
+    flex-basis: calc(( 100% - 10px ) / 2);
   }
 
   &__spinner {
@@ -23,18 +28,17 @@
     100% { transform: rotate(360deg); }
   }
 
-  &__item{
-    flex-basis: calc(( 100% - 20px ) / 3);
-    
-  }
 
   &__btn{
     width: 100%;
-    color: rgb(255, 217, 0);
-    padding: 5px 10px;
-    background-color: rgba(255, 255, 254, 0.425);
-    border-radius: 15px;
+    font-size: 10px;
     cursor: pointer;
+    padding: 3px 6px;
+    border-radius: 15px;
+    border: 1px solid black;
+    color: rgb(255, 217, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+
     &:hover {
       scale: 1.05;
       border: 1px solid rgb(255, 217, 0);

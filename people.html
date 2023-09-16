@@ -50,11 +50,13 @@
             </li>
           </ul>
         </nav>
+
         <h2 class="contain__title">Films</h2>
         <div class="people">
-          <div class="people__spinner" id="globalLoading"></div>
+          <div class="spinner" id="globalLoading"></div>
           <ul id="peopleList" class="people__list"></ul>
         </div>
+
         <div id="myModal" class="modal">
           <div class="modal__cont">
             <span class="modal__close" id="close">&times;</span>
@@ -70,11 +72,13 @@
       </section>
 
       <footer class="footer">
-        <button type="button" id="prev" class="footer__btn"><</button>
-        <span id="page" class="footer__span"></span>
-        <button type="button" id="next" class="footer__btn footer__btn--next">
-          >
-        </button>
+        <div class="footer__pag">
+          <button type="button" id="prev" class="footer__btn">&#171</button>
+          <span id="page" class="footer__span"></span>
+          <button type="button" id="next" class="footer__btn footer__btn--next">
+            &#187
+          </button>
+        </div>
       </footer>
     </div>
 

@@ -5,20 +5,29 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__pag{
+    padding: 5px;
+    display: flex;
+
+  }
   &__btn{
     color: rgb(255, 217, 0);
-    padding: 5px 10px;
-    display: flex;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);;
-    font-size: 16px;
-    font-weight: 800;
+    background-color: transparent;
+    font-size: 30px;
+    border: none;
+
+    &:hover{
+      scale: 1.2;
+    }
   }
 
   &__span{
+    position: relative;
+    top: 3px;
+    margin: 0 10px;
     color: rgb(255, 217, 0);
-    padding: 2px 5px;
     display: flex;
     align-items: center;
   }
