@@ -52,7 +52,6 @@ function fetchPeople(page) {
     .then((response) => response.json())
     .then((data) => {
       span.textContent = currentPage;
-      console.log(data)
       peopleList.innerHTML = "";
       data.results.forEach((people) => {
         const row = document.createElement("li");
@@ -65,7 +64,6 @@ function fetchPeople(page) {
           // Mostrar el modal
           modal.style.display = "block";
 
-          // Mostrar la descripción de la película en el modal
           peopleName.textContent = people.name;
           birth_year.textContent = people.birth_year;
           eye_color.textContent = people.eye_color;

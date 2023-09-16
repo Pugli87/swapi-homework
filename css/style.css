@@ -71,9 +71,8 @@ a {
   flex-direction: column;
 }
 .contain__title {
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
-  display: none;
 }
 .contain__table {
   margin-top: 20px;
@@ -178,7 +177,7 @@ a {
 }
 
 .people {
-  margin: 20px auto;
+  margin-top: 50px;
 }
 .people__list {
   display: flex;
@@ -241,7 +240,7 @@ a {
 }
 
 .films {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .films__list {
   width: 90%;

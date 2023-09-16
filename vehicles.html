@@ -7,39 +7,81 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <header class="Header">
-      <div class="Header__cont-text">
-        <h1 class="Header__title">swapi</h1>
-        <p class="Header__p">The Star Wars API</p>
-      </div>
-      <nav class="Header__nav">
-        <ul class="Header__list">
-          <li class="Header__item">
-            <a href="./index.html" class="Header__link">Home</a>
-          </li>
-          <li class="Header__item">
-            <a href="./films.html" class="Header__link">Films</a>
-          </li>
-          <li class="Header__item">
-            <a href="./people.html" class="Header__link">people</a>
-          </li>
-          <li class="Header__item">
-            <a href="./planets.html" class="Header__link">Planets</a>
-          </li>
-          <li class="Header__item">
-            <a href="./spacies.html" class="Header__link">Spacies</a>
-          </li>
-          <li class="Header__item">
-            <a href="./startships.html" class="Header__link">Startships</a>
-          </li>
-          <li class="Header__item">
-            <a href="./vehicles.html" class="Header__link active">Vehicles</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <h1 class="Header__title">Vehicles</h1>
+    <div class="contain">
+      <header class="Header">
+        <div class="Header__cont-text">
+          <a href="./index.html">
+            <h1 class="Header__title">swapi</h1>
+            <p class="Header__p">The Star Wars API</p>
+          </a>
+        </div>
+        <nav class="Header__nav">
+          <ul class="Header__list">
+            <li class="Header__item">
+              <a href="./index.html" class="Header__link active">Home</a>
+            </li>
+            <li class="Header__item">
+              <a href="./search.html" class="Header__link">Search</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-    <script type="module" src="./app.js"></script>
+      <section class="section">
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="./films.html" class="nav__link">Films</a>
+            </li>
+            <li class="nav__item">
+              <a href="./people.html" class="nav__link">People</a>
+            </li>
+            <li class="nav__item">
+              <a href="./planets.html" class="nav__link">Planets</a>
+            </li>
+            <li class="nav__item">
+              <a href="./spacies.html" class="nav__link">Species</a>
+            </li>
+            <li class="nav__item">
+              <a href="./startships.html" class="nav__link">Startships</a>
+            </li>
+            <li class="nav__item">
+              <a href="./vehicles.html" class="nav__link active">Vehicles</a>
+            </li>
+          </ul>
+        </nav>
+
+        <h2 class="contain__title">Vehicles</h2>
+        <div class="vehicles">
+          <ul id="planetsList" class="vehicles__list"></ul>
+        </div>
+        <div id="myModal" class="modal">
+          <div class="modal__cont">
+            <span class="modal__close" id="close">&times;</span>
+            <h2 class="modal__title">Detalles de las personas</h2>
+            <h3 id="name"></h3>
+            <p>Año de nacimiento: <span id="birth_year"></span></p>
+            <p>Color de ojos: <span id="eye_color"></span></p>
+            <p>Genero: <span id="gender"></span></p>
+            <p>Color cabello: <span id="hair_color"></span></p>
+            <p>Estatura: <span id="height"></span></p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer__pag">
+          
+          <button type="button" id="prev" class="footer__btn">&#171</button>
+          <span id="page" class="footer__span"></span>
+          <button type="button" id="next" class="footer__btn footer__btn--next">
+            &#187
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/planets.js"></script>
   </body>
 </html>
