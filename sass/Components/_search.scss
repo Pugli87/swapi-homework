@@ -1,0 +1,32 @@
+
+.search{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__form{
+    
+  }
+
+  &__input{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 10px;
+    
+  }
+  
+  &__btn{
+    border: none;
+    background-color: transparent;
+    border-radius: 0 10px 10px 0;
+    position: relative;
+    right: 32px;
+    top: 2px;
+    cursor: pointer;
+    
+    & svg{
+    }
+
+  }
+}
