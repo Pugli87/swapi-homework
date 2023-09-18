@@ -119,6 +119,8 @@ a {
 }
 
 .main {
+  min-width: 280px;
+  max-width: 320px;
   position: absolute;
   top: 50px;
   padding: 10px;
@@ -133,6 +135,16 @@ a {
   justify-content: center;
   font-size: 10px;
   color: white;
+}
+@media (min-width: 767px) {
+  .main {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1279px) {
+  .main {
+    max-width: 1280px;
+  }
 }
 
 .spinner {
