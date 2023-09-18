@@ -7,6 +7,10 @@
 body {
   color: lightgray;
   font-size: 10px;
+  background-image: url("https://images3.alphacoders.com/114/11439.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 img {
@@ -203,34 +207,54 @@ a {
   font-size: 12px;
 }
 .modal__cont {
-  background-color: rgba(211, 211, 211, 0.493);
+  background-color: rgba(255, 255, 255, 0.726);
   margin: 10% auto;
-  padding: 10px;
-  width: 80%;
+  width: 90%;
   max-width: 300px;
   position: relative;
-  border: 2px dashed rgb(255, 217, 0);
+  border: 1px solid rgb(255, 0, 0);
+  box-shadow: 0 0 5px rgb(255, 0, 0);
   border-radius: 15px;
+  background-image: url("https://th.bing.com/th/id/OIP.phpvHm319L1QN-9pkSsJ4QHaEo?pid=ImgDet&rs=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .modal__header {
-  padding: 5px;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
   color: rgb(255, 217, 0);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.699);
   text-align: center;
 }
 .modal__main {
-  padding: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .modal__close {
-  font-size: 16px;
+  font-size: 20px;
   position: absolute;
-  top: 9px;
+  top: 0;
   right: 12px;
   padding: 5px;
   cursor: pointer;
   color: rgb(255, 217, 0);
+}
+.modal__list {
+  width: 50%;
+  padding: 5px;
+}
+.modal__list:not(:last-child) {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 0 15px;
+  padding-right: 5px;
+  border-right: 1px solid rgb(255, 217, 0);
+}
+.modal__list--api {
+  width: 50%;
+  padding-right: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 15px 0;
 }
 .modal__item {
   justify-content: space-between;
@@ -238,11 +262,24 @@ a {
 .modal__paragraph {
   display: flex;
   justify-content: space-between;
+  padding: 3px;
+  color: rgb(255, 217, 0);
 }
-.modal__span {
+.modal__paragraph--api {
+  color: white;
   display: flex;
   text-align: start;
   justify-content: flex-start;
+}
+.modal__select {
+  font-size: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: lightgray;
+  border-radius: 15px;
+  padding: 2px 0;
+}
+.modal__option {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .people {

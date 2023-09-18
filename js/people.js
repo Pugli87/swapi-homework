@@ -23,7 +23,6 @@ prev.addEventListener("click", prevPage);
 
 next.addEventListener("click", nextPage);
 
-
 function fetchPeople(page) {
   const peopleList = document.getElementById("peopleList");
   const modal = document.getElementById("myModal");
@@ -36,6 +35,9 @@ function fetchPeople(page) {
   const gender = document.getElementById("gender");
   const hair_color = document.getElementById("hair_color");
   const height = document.getElementById("height");
+  const homeworld = document.getElementById("homeworld");
+  const mass = document.getElementById("mass");
+  const skin = document.getElementById("skin");
   
   closeButton.addEventListener("click", () => {
     modal.style.display = "none";
@@ -59,14 +61,14 @@ function fetchPeople(page) {
       data.results.forEach((people) => {
         const row = document.createElement("li");
         row.classList.add("people__item");
-
+        
         const button = document.createElement("button");
         button.textContent = people.name;
         button.classList.add("people__btn");
         button.addEventListener("click", () => {
-          // Mostrar el modal
+          
           modal.style.display = "flex";
-
+          
           headerModal.textContent = people.name;
           peopleName.textContent = people.name;
           birth_year.textContent = people.birth_year;
@@ -74,8 +76,76 @@ function fetchPeople(page) {
           gender.textContent = people.gender;
           hair_color.textContent = people.hair_color;
           height.textContent = people.height + " Cm";
-        });
+          const startIndex = people.homeworld.indexOf("planets/");
+          const result = people.homeworld.substring(startIndex);
+          homeworld.textContent = result;
+          mass.textContent = people.mass;
+          skin.textContent = people.skin_color;
 
+          if (!people.species || people.species.length === 0) {
+            console.log("Sin species");
+          }else{
+            const species = document.getElementById("species");
+            species.innerHTML = "";
+            people.species.map((specie) => {
+              fetch(specie)
+                .then(response => response.json())
+                .then(speciesData => {
+                  const option = document.createElement("option");
+                  option.classList.add("modal__option");
+                  option.value = speciesData.name; 
+                  option.text = speciesData.name; 
+
+                  species.appendChild(option);
+                })
+                .catch(error => {
+                  console.error("Error al obtener datos de la especie:", error);
+                });
+            });
+          }
+
+          if (!people.starships || people.starships.length === 0) {
+            console.log("Sin species");
+          } else {
+            const starships = document.getElementById("starships");
+            starships.innerHTML = "";
+            people.starships.map((starship) => {
+              fetch(starship)
+                .then(response => response.json())
+                .then(starshipsData => {
+                  const option = document.createElement("option");
+                  option.classList.add("modal__option");
+                  option.value = starshipsData.name; 
+                  option.text = starshipsData.name; 
+                  starships.appendChild(option);
+                })
+                .catch(error => {
+                  console.error("Error al obtener datos de la vehicles:", error);
+                });
+            });
+          }
+
+          if (!people.vehicles || people.vehicles.length === 0) {
+            console.log("Sin species");
+          } else {
+            const vehicles = document.getElementById("vehicles");
+            vehicles.innerHTML = "";
+            people.vehicles.map((vehicle) => {
+              fetch(vehicle)
+                .then(response => response.json())
+                .then(vehiclesData => {
+                  const option = document.createElement("option");
+                  option.classList.add("modal__option");
+                  option.value = vehiclesData.name; 
+                  option.text = vehiclesData.name; 
+                  vehicles.appendChild(option);
+                })
+                .catch(error => {
+                  console.error("Error al obtener datos de la vehicles:", error);
+                });
+            });
+          }
+        });
         row.appendChild(button);
         peopleList.appendChild(row);
       });
