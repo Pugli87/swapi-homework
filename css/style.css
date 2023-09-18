@@ -40,10 +40,22 @@ body {
 }
 
 .section {
+  min-width: 280px;
+  max-width: 320px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (min-width: 767px) {
+  .section {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1279px) {
+  .section {
+    max-width: 1280px;
+  }
 }
 
 img {
@@ -314,6 +326,8 @@ a {
   padding: 10px;
   margin-top: 10px;
   text-align: justify;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 .description__title {
