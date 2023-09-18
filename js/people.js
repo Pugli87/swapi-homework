@@ -29,6 +29,7 @@ function fetchPeople(page) {
   const modal = document.getElementById("myModal");
   const closeButton = document.getElementById("close");
   const apiUrl = `https://swapi.dev/api/people/?page=${page}`;
+  const headerModal = document.getElementById("header");
   const peopleName = document.getElementById("name");
   const birth_year = document.getElementById("birth_year");
   const eye_color = document.getElementById("eye_color");
@@ -51,6 +52,8 @@ function fetchPeople(page) {
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
+      
+      console.log(data);
       span.textContent = currentPage;
       peopleList.innerHTML = "";
       data.results.forEach((people) => {
@@ -62,14 +65,15 @@ function fetchPeople(page) {
         button.classList.add("people__btn");
         button.addEventListener("click", () => {
           // Mostrar el modal
-          modal.style.display = "block";
+          modal.style.display = "flex";
 
+          headerModal.textContent = people.name;
           peopleName.textContent = people.name;
           birth_year.textContent = people.birth_year;
           eye_color.textContent = people.eye_color;
           gender.textContent = people.gender;
           hair_color.textContent = people.hair_color;
-          height.textContent = people.height;
+          height.textContent = people.height + " Cm";
         });
 
         row.appendChild(button);

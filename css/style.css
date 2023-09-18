@@ -191,6 +191,8 @@ a {
 
 .modal {
   display: none;
+  flex-direction: column;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -198,24 +200,49 @@ a {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
+  font-size: 12px;
 }
 .modal__cont {
   background-color: rgba(211, 211, 211, 0.493);
   margin: 10% auto;
-  padding: 20px;
-  border: 1px solid lightgray;
+  padding: 10px;
   width: 80%;
-  max-width: 600px;
+  max-width: 300px;
   position: relative;
   border: 2px dashed rgb(255, 217, 0);
   border-radius: 15px;
 }
+.modal__header {
+  padding: 5px;
+  color: rgb(255, 217, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+.modal__main {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
 .modal__close {
+  font-size: 16px;
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
+  top: 9px;
+  right: 12px;
+  padding: 5px;
   cursor: pointer;
+  color: rgb(255, 217, 0);
+}
+.modal__item {
+  justify-content: space-between;
+}
+.modal__paragraph {
+  display: flex;
+  justify-content: space-between;
+}
+.modal__span {
+  display: flex;
+  text-align: start;
+  justify-content: flex-start;
 }
 
 .people {
@@ -228,7 +255,7 @@ a {
   justify-content: center;
 }
 .people__item {
-  flex-basis: calc((100% - 20px) / 3);
+  flex-basis: calc((100% - 10px) / 2);
 }
 .people__btn {
   width: 100%;
@@ -244,6 +271,9 @@ a {
   border: 1px solid rgb(255, 217, 0);
 }
 
+.nav {
+  margin-bottom: 50px;
+}
 .nav__title {
   color: rgb(255, 217, 0);
   text-transform: uppercase;

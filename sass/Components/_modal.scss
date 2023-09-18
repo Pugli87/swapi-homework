@@ -1,5 +1,7 @@
 .modal {
   display: none;
+  flex-direction: column;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,26 +9,54 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1; 
-  
+  font-size: 12px;
 
   &__cont {
     background-color: rgba(211, 211, 211, 0.493);
     margin: 10% auto;
-    padding: 20px;
-    border: 1px solid lightgray;
+    padding: 10px;
     width: 80%;
-    max-width: 600px;
+    max-width: 300px;
     position: relative;
     border: 2px dashed rgb(255, 217, 0);
     border-radius: 15px;
   }
-  
+
+  &__header{
+    padding: 5px;
+    color: rgb(255, 217, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  &__main{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
   
   &__close {
+    font-size: 16px;
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
+    top: 9px;
+    right: 12px;
+    padding: 5px;
     cursor: pointer;
+    color: rgb(255, 217, 0);
+  }
+  
+  &__item{
+    justify-content: space-between;    
+  }
+  
+  &__paragraph{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  &__span{
+    display: flex;
+    text-align: start;
+    justify-content: flex-start;
   }
 }
