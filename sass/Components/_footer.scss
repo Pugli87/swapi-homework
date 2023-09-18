@@ -1,11 +1,8 @@
 .footer{
-  width: 100%;
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: center;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
 
   &__pag{
     padding: 5px;

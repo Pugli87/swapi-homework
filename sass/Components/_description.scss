@@ -1,0 +1,30 @@
+
+.description{
+  padding: 10px;
+  margin-top: 10px;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &__title{
+  color: rgb(255, 217, 0);
+    display: flex;
+    justify-content: center;
+    &--subtitle{
+      justify-content:flex-start ;
+    }
+  }
+  
+  &__list{
+    padding: 10px;
+  }
+
+  &__item{
+    margin-top: 10px;
+    
+  }
+
+
+  &__paragraph{
+    margin-top: 10px;
+  }
+}

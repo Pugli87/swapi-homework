@@ -56,8 +56,8 @@ function fetchPeople(page) {
       data.results.forEach((people) => {
         const row = document.createElement("li");
         row.classList.add("people__item");
+
         const button = document.createElement("button");
-        
         button.textContent = people.name;
         button.classList.add("people__btn");
         button.addEventListener("click", () => {

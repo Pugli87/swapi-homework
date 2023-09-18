@@ -1,0 +1,36 @@
+.main{
+  position: absolute;
+  top: 50px;
+  padding: 10px;
+
+  &__title{
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 217, 0);
+  }
+
+  &__paragraph{
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
+  }
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid rgb(255, 217, 0);
+  border-bottom: 4px solid rgb(255, 0, 0);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
