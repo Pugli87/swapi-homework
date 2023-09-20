@@ -30,10 +30,10 @@ a {
 }
 
 .contain {
-  max-width: 420px;
+  width: 420px;
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -119,8 +119,6 @@ a {
 .main {
   width: 100%;
   max-width: 420px;
-  position: absolute;
-  top: 50px;
   padding: 10px;
 }
 .main__title {
@@ -277,6 +275,8 @@ a {
 }
 .modal__paragraph--api {
   color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 26px black;
 }
 .modal .modal__opening {
   padding: 5px 10px;
