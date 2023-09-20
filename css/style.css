@@ -10,7 +10,8 @@ body {
   background-image: url("https://images3.alphacoders.com/114/11439.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%; /* Para cubrir toda la pantalla */
+  background-attachment: fixed; /* Fija el fondo para que no se desplace con el contenido */
 }
 
 img {
@@ -239,7 +240,7 @@ a {
   color: rgb(255, 217, 0);
 }
 .modal__list {
-  padding: 20px 10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -247,11 +248,18 @@ a {
 }
 .modal__list:not(:last-child) {
   background-color: rgba(0, 0, 0, 0.6);
-  padding-right: 5px;
+  padding-right: 10px;
   border-right: 1px solid rgb(255, 217, 0);
 }
 .modal__list--api {
   background-color: rgba(0, 0, 0, 0.5);
+}
+.modal__list--films {
+  margin-top: 5px;
+  border-top: 1px solid yellow;
+}
+.modal__list--films:not(:last-child) {
+  margin-bottom: 5px;
 }
 .modal__item {
   display: flex;
@@ -259,7 +267,7 @@ a {
   justify-content: space-between;
 }
 .modal__item:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .modal__paragraph {
   display: flex;
@@ -269,7 +277,8 @@ a {
 .modal__paragraph--api {
   color: white;
 }
-.modal__paragraph_opening {
+.modal .modal__opening {
+  padding: 5px 10px;
   text-align: justify;
 }
 .modal__selectCont {

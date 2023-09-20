@@ -13,11 +13,6 @@ async function fetchFilms() {
   const director = document.getElementById("director");
   const producer = document.getElementById("producer");
   const release = document.getElementById("release");
-  //const characters = document.getElementById("characters");
-  // const planets = document.getElementById("planets");
-  // const starships = document.getElementById("starShips");
-  // const vehicles = document.getElementById("vehicles");
-  // const species = document.getElementById("species");
   const created = document.getElementById("created");
   const edited= document.getElementById("edited");
 

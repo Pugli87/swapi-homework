@@ -1,7 +1,7 @@
 // Función para mostrar el indicador de carga global
 function showGlobalLoading() {
   const globalLoading = document.getElementById("globalLoading");
-  globalLoading.style.display = "block";
+  globalLoading.style.display = "flex";
 }
 
 // Función para ocultar el indicador de carga global
@@ -10,4 +10,4 @@ function hideGlobalLoading() {
   globalLoading.style.display = "none";
 }
 
-export { showGlobalLoading, hideGlobalLoading };
+export { showGlobalLoading, hideGlobalLoading };  

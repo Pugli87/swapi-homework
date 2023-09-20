@@ -10,8 +10,8 @@ body{
   background-image: url('https://images3.alphacoders.com/114/11439.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-
+  background-size: 100% 100%; /* Para cubrir toda la pantalla */
+  background-attachment: fixed; /* Fija el fondo para que no se desplace con el contenido */
 }
 
 img {

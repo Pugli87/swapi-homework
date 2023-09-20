@@ -49,19 +49,28 @@
   }
 
   &__list{
-    padding: 20px 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     &:not(:last-child){
       background-color: rgba(0, 0, 0, 0.6);
-      padding-right: 5px;
+      padding-right: 10px;
       border-right: 1px solid rgb(255, 217, 0);
     }
 
     &--api{
       background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &--films{
+      margin-top: 5px;
+      border-top: 1px solid yellow;
+      &:not(:last-child){
+        margin-bottom:  5px;
+      }
+
     }
   }
   
@@ -70,8 +79,10 @@
     flex-direction: column;
     justify-content: space-between;    
     &:not(:last-child){
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
+
+
   }
   
   &__paragraph{
@@ -84,8 +95,13 @@
     }
 
     &_opening{
-      text-align: justify;
     }
+  }
+  
+  .modal__opening{
+    padding: 5px 10px;
+    text-align: justify;
+
   }
 
 
