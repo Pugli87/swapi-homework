@@ -28,8 +28,8 @@ function fetchPeople(page) {
   const modal = document.getElementById("myModal");
   const closeButton = document.getElementById("close");
   const apiUrl = `https://swapi.dev/api/people/?page=${page}`;
+
   const headerModal = document.getElementById("header");
-  const peopleName = document.getElementById("name");
   const birth_year = document.getElementById("birth_year");
   const eye_color = document.getElementById("eye_color");
   const gender = document.getElementById("gender");
@@ -43,8 +43,8 @@ function fetchPeople(page) {
     modal.style.display = "none";
   });
   
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
       modal.style.display = "none";
     }
   });
@@ -67,40 +67,40 @@ function fetchPeople(page) {
         button.classList.add("people__btn");
         button.addEventListener("click", () => {
           
-          modal.style.display = "flex";
+        modal.style.display = "flex";
+        
+        headerModal.textContent = people.name;
+        birth_year.textContent = people.birth_year;
+        eye_color.textContent = people.eye_color;
+        gender.textContent = people.gender;
+        hair_color.textContent = people.hair_color;
+        height.textContent = people.height + " Cm";
+        const startIndex = people.homeworld.indexOf("planets/");
+        const result = people.homeworld.substring(startIndex);
+        homeworld.textContent = result;
+        mass.textContent = people.mass;
+        skin.textContent = people.skin_color;
+
+        if (!people.species || people.species.length === 0) {
+          console.log("Sin species");
+        }else{
+          const species = document.getElementById("species");
+          species.innerHTML = "";
           
-          headerModal.textContent = people.name;
-          peopleName.textContent = people.name;
-          birth_year.textContent = people.birth_year;
-          eye_color.textContent = people.eye_color;
-          gender.textContent = people.gender;
-          hair_color.textContent = people.hair_color;
-          height.textContent = people.height + " Cm";
-          const startIndex = people.homeworld.indexOf("planets/");
-          const result = people.homeworld.substring(startIndex);
-          homeworld.textContent = result;
-          mass.textContent = people.mass;
-          skin.textContent = people.skin_color;
+          people.species.map((specie) => {
+            fetch(specie)
+              .then(response => response.json())
+              .then(speciesData => {
+                const option = document.createElement("option");
+                option.classList.add("modal__option");
+                option.value = speciesData.name; 
+                option.text = speciesData.name; 
 
-          if (!people.species || people.species.length === 0) {
-            console.log("Sin species");
-          }else{
-            const species = document.getElementById("species");
-            species.innerHTML = "";
-            people.species.map((specie) => {
-              fetch(specie)
-                .then(response => response.json())
-                .then(speciesData => {
-                  const option = document.createElement("option");
-                  option.classList.add("modal__option");
-                  option.value = speciesData.name; 
-                  option.text = speciesData.name; 
-
-                  species.appendChild(option);
-                })
-                .catch(error => {
-                  console.error("Error al obtener datos de la especie:", error);
-                });
+                species.appendChild(option);
+              })
+              .catch(error => {
+                console.error("Error al obtener datos de la especie:", error);
+              });
             });
           }
 
@@ -145,6 +145,7 @@ function fetchPeople(page) {
                 });
             });
           }
+
         });
         row.appendChild(button);
         peopleList.appendChild(row);

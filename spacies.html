@@ -35,13 +35,13 @@
                 <a href="./films.html" class="nav__link">Films</a>
               </li>
               <li class="nav__item">
-                <a href="./people.html" class="nav__link active">People</a>
+                <a href="./people.html" class="nav__link">People</a>
               </li>
               <li class="nav__item">
                 <a href="./planets.html" class="nav__link">Planets</a>
               </li>
               <li class="nav__item">
-                <a href="./spacies.html" class="nav__link">Species</a>
+                <a href="./spacies.html" class="nav__link active">Species</a>
               </li>
               <li class="nav__item">
                 <a href="./startships.html" class="nav__link">Startships</a>
@@ -65,85 +65,63 @@
                 <h4 id="header"></h4>
                 <span class="modal__close" id="close">&times;</span>
               </header>
-              <main class="modal__main">
-                <ul class="modal__list">
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Name: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Birth year: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Eye color: </p>
-                  </li>
-                  <li class="modal__item">
-                      <p class="modal__paragraph">Gender: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Hair color: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Height: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Homeworld: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Mass: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Skin color: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Species: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Starships: </p>
-                  </li>
-                  <li class="modal__item">
-                    <p class="modal__paragraph">Vehicles: </p>
-                  </li>
-                </ul>
-
                 <ul class="modal__list modal__list--api">
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="name"></p >
+                    <p class="modal__paragraph">Birth year: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="birth_year"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="birth_year"></p >
+                    <p class="modal__paragraph">Eye color: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="eye_color"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="eye_color"></p >
+                    <p class="modal__paragraph">Gender: 
+                        <span class="modal__paragraph modal__paragraph--api"  id="gender"></span >
+                      </p>
                   </li>
                   <li class="modal__item">
-                      <p class="modal__paragraph modal__paragraph--api"  id="gender"></p >
+                    <p class="modal__paragraph">Hair color: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="hair_color"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="hair_color"></p >
+                    <p class="modal__paragraph">Height: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="height"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="height"></p >
+                    <p class="modal__paragraph">Homeworld: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="homeworld"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="homeworld"></p >
+                    <p class="modal__paragraph">Mass: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="mass"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="mass"></p >
+                    <p class="modal__paragraph">Skin color: 
+                      <span class="modal__paragraph modal__paragraph--api"  id="skin"></span >
+                    </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph modal__paragraph--api"  id="skin"></p >
+                    <div class="modal__selectCont">
+                    <p class="modal__paragraph">Species: </p>
+                    <select name="Spacies" id="species" class="modal__select"></select></div>
                   </li>
                   <li class="modal__item">
-                    <select name="Spacies" id="species" class="modal__select"></select>
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Starships: </p>
+                    <select name="Starships" id="starships" class="modal__select"></select></div>
                   </li>
                   <li class="modal__item">
-                    <select name="Starships" id="starships" class="modal__select"></select>
-                  </li>
-                  <li class="modal__item">
-                    <select name="Vehicles" id="vehicles" class="modal__select"></select>
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Vehicles: </p>
+                    <select name="Vehicles" id="vehicles" class="modal__select"></select></div>
                   </li>
                 </ul>
-              </main>
             </div>
           </div>
         </section>
@@ -151,7 +129,7 @@
       <footer class="footer">
         <div class="footer__pag">
           <button type="button" id="prev" class="footer__btn">&#171</button>
-          <span id="page" class="footer__span"></span>
+            <span id="page" class="footer__span"></span>
           <button type="button" id="next" class="footer__btn footer__btn--next">
             &#187
           </button>

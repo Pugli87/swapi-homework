@@ -1,20 +1,18 @@
-// Función para hacer una solicitud a la API de Star Wars
-function fetchData() {
-  const apiUrl = 'https://swapi.dev/api/';
-  
-  // Realiza la solicitud a la API
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      // Maneja los datos obtenidos
-      const dataContainer = document.getElementById('dataContainer');
-      dataContainer.innerHTML = JSON.stringify(data, null, 2);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
 
-// Asocia la función fetchData al botón Obtener Datos
-const fetchDataBtn = document.getElementById('fetchDataBtn');
-fetchDataBtn.addEventListener('click', fetchData);
+export async function fetchData(query, page) {
+  const apiUrl = `https://swapi.dev/api/${query}/?page=${page}`;
+  
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}

@@ -27,7 +27,7 @@
         </nav>
       </header>
 
-      <main>
+      <main class="main">
         <section class="section">
           <nav class="nav">
             <ul class="nav__list">
@@ -51,18 +51,128 @@
               </li>
             </ul>
           </nav>
+
           <h2 class="contain__title">Films</h2>
 
-          <div class="section films">
-            <ul id="filmsList" class="films__list"></ul>
-
+          <div class="films">
             <div class="spinner" id="globalLoading"></div>
-            <div id="myModal" class="modal">
-              <div class="modal__cont">
+            <ul id="filmsList" class="films__list"></ul>
+          </div>
+
+          <div id="myModal" class="modal">
+            <div class="modal__cont">
+              <header class="modal__header">
+                <h4 id="header"></h4>
                 <span class="modal__close" id="close">&times;</span>
-                <h2 class="modal__title">Detalles de la película</h2>
-                <p id="movieDescription"></p>
+              </header>
+              <div class="modal__wrapper">
+                  <p
+                    class="modal__paragraph modal__paragraph--api "
+                    id="filmsDescription"
+                  ></p>
+                </li>
+                <ul class="modal__list">
+                  <li class="modal_item">
+                    <p class="modal__paragraph"> Episode:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="episode"
+                      ></span>
+                    </p>
+                  </li>
+                  <li class="modal_item">
+                    <p class="modal__paragraph"> Director:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="director"
+                      ></span>
+                    </p>
+                  </li>
+                  <li class="modal_item">
+                    <p class="modal__paragraph" style="text-align: end;">Producer:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="producer"
+                      ></span>
+                    </p>
+                  </li>
+                  <li class="modal_item">
+                    <p class="modal__paragraph">Release date:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="release"
+                      ></span>
+                    </p>
+                  </li>
+                  <li class="modal_item">
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Characters:</p>
+                      <select
+                        name="Characters"
+                        id="characters"
+                        class="modal__select"
+                      ></select>
+                    </div>
+                  </li>
+                  <li class="modal_item">
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Planets:</p>
+                      <select
+                        name="Planets"
+                        id="planets"
+                        class="modal__select"
+                      ></select>
+                    </div>
+                  </li>
+                  <li class="modal_item">
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Starships:</p>
+                      <select
+                        name="Starships"
+                        id="starships"
+                        class="modal__select"
+                      ></select>
+                    </div>
+                  </li>
+                  <li class="modal_item">
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Vehicles:</p>
+                      <select
+                        name="Vehicles"
+                        id="vehicles"
+                        class="modal__select"
+                      ></select>
+                    </div>
+                  </li>
+                  <li class="modal_item">
+                    <div class="modal__selectCont">
+                      <p class="modal__paragraph">Species:</p>
+                      <select
+                        name="Spacies"
+                        id="species"
+                        class="modal__select"
+                      ></select>
+                    </div>
+                  </li>
+                  <li class="modal_item">
+                    <p class="modal__paragraph"> Created:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="created"
+                      ></span>
+                    </p>
+                  </li>
+                  <li class="modal_item">
+                    <p class="modal__paragraph"> Edited:
+                      <span
+                        class="modal__paragraph modal__paragraph--api"
+                        id="edited"
+                      ></span>
+                    </p>
+                  </li>
+                </ul>
               </div>
+              <!-- <p id="movieDescription"></p> -->
             </div>
           </div>
         </section>
@@ -77,7 +187,6 @@
         >
       </footer>
     </div>
-
     <script type="module" src="./js/app.js"></script>
     <script type="module" src="./js/films.js"></script>
   </body>

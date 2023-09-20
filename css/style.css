@@ -6,7 +6,7 @@
 
 body {
   color: lightgray;
-  font-size: 10px;
+  font-size: 14px;
   background-image: url("https://images3.alphacoders.com/114/11439.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -130,7 +130,6 @@ a {
 .main__paragraph {
   display: flex;
   justify-content: center;
-  font-size: 10px;
   color: white;
 }
 @media (min-width: 767px) {
@@ -185,12 +184,13 @@ a {
   scale: 1.2;
 }
 .footer__span {
+  display: flex;
+  align-items: center;
   position: relative;
   top: 3px;
   margin: 0 10px;
+  padding: 5px 10px;
   color: rgb(255, 217, 0);
-  display: flex;
-  align-items: center;
 }
 
 .modal {
@@ -204,79 +204,84 @@ a {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
-  font-size: 12px;
 }
 .modal__cont {
-  background-color: rgba(255, 255, 255, 0.726);
   margin: 10% auto;
   width: 90%;
   max-width: 300px;
   position: relative;
-  border: 1px solid rgb(255, 0, 0);
-  box-shadow: 0 0 5px rgb(255, 0, 0);
   border-radius: 15px;
   background-image: url("https://th.bing.com/th/id/OIP.phpvHm319L1QN-9pkSsJ4QHaEo?pid=ImgDet&rs=1");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
 }
 .modal__header {
   padding: 10px;
   border-radius: 15px 15px 0 0;
   color: rgb(255, 217, 0);
-  background-color: rgba(0, 0, 0, 0.699);
+  background-color: rgba(255, 0, 0, 0.5);
   text-align: center;
 }
-.modal__main {
+.modal__wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .modal__close {
   font-size: 20px;
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 12px;
   padding: 5px;
   cursor: pointer;
   color: rgb(255, 217, 0);
 }
 .modal__list {
-  width: 50%;
-  padding: 5px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 .modal__list:not(:last-child) {
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 0 0 0 15px;
   padding-right: 5px;
   border-right: 1px solid rgb(255, 217, 0);
 }
 .modal__list--api {
-  width: 50%;
-  padding-right: 5px;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0 0 15px 0;
 }
 .modal__item {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+.modal__item:not(:last-child) {
+  margin-bottom: 10px;
 }
 .modal__paragraph {
   display: flex;
   justify-content: space-between;
-  padding: 3px;
   color: rgb(255, 217, 0);
 }
 .modal__paragraph--api {
   color: white;
+}
+.modal__paragraph_opening {
+  text-align: justify;
+}
+.modal__selectCont {
   display: flex;
-  text-align: start;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .modal__select {
-  font-size: 10px;
+  font-size: 12px;
   background-color: rgba(0, 0, 0, 0.5);
   color: lightgray;
   border-radius: 15px;
-  padding: 2px 0;
+  padding: 0 10px;
 }
 .modal__option {
   background-color: rgba(0, 0, 0, 0.5);
@@ -296,7 +301,7 @@ a {
 }
 .people__btn {
   width: 100%;
-  font-size: 10px;
+  font-size: 12px;
   color: lightgray;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -308,16 +313,12 @@ a {
   border: 1px solid rgb(255, 217, 0);
 }
 
-.nav {
-  margin-bottom: 50px;
-}
 .nav__title {
   color: rgb(255, 217, 0);
   text-transform: uppercase;
 }
 .nav__cont-text {
   color: lightgray;
-  font-size: 10px;
 }
 .nav__nav {
   display: flex;
@@ -335,7 +336,6 @@ a {
 .nav__link {
   display: flex;
   cursor: pointer;
-  font-size: 10px;
   padding: 2px 8px;
   border: 1px solid black;
   border-radius: 10px;
@@ -349,11 +349,36 @@ a {
   text-decoration: underline;
 }
 
+.people {
+  margin-top: 50px;
+}
+.people__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.people__item {
+  flex-basis: calc((100% - 10px) / 2);
+}
+.people__btn {
+  width: 100%;
+  font-size: 12px;
+  color: lightgray;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+}
+.people__btn:hover {
+  scale: 1.05;
+  border: 1px solid rgb(255, 217, 0);
+}
+
 .films {
   margin-top: 50px;
 }
 .films__list {
-  width: 90%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -362,32 +387,14 @@ a {
 .films__item {
   flex-basis: calc((100% - 10px) / 2);
 }
-.films__spinner {
-  border: 4px solid rgba(0, 0, 0, 0.3);
-  border-top: 4px solid rgb(255, 217, 0);
-  border-bottom: 4px solid rgb(255, 0, 0);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .films__btn {
   width: 100%;
-  font-size: 10px;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 15px;
-  border: 1px solid black;
+  font-size: 12px;
   color: lightgray;
+  padding: 5px;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
 }
 .films__btn:hover {
   scale: 1.05;
@@ -440,6 +447,31 @@ a {
   right: 32px;
   top: 2px;
   cursor: pointer;
+}
+.planets {
+  margin-top: 50px;
+}
+.planets__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.planets__item {
+  flex-basis: calc((100% - 10px) / 2);
+}
+.planets__btn {
+  width: 100%;
+  font-size: 12px;
+  color: lightgray;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+}
+.planets__btn:hover {
+  scale: 1.05;
+  border: 1px solid rgb(255, 217, 0);
 }
 
 /*# sourceMappingURL=style.css.map */
