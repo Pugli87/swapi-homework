@@ -30,7 +30,7 @@ a {
 }
 
 .contain {
-  width: 420px;
+  max-width: 420px;
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   min-height: 100vh;
@@ -118,11 +118,11 @@ a {
 
 .main {
   width: 100%;
-  max-width: 420px;
+  margin-top: -100px;
   padding: 10px;
 }
 .main__title {
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   color: rgb(255, 217, 0);
@@ -298,7 +298,7 @@ a {
 }
 
 .people {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .people__list {
   display: flex;
@@ -360,7 +360,7 @@ a {
 }
 
 .people {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .people__list {
   display: flex;
@@ -459,7 +459,59 @@ a {
   cursor: pointer;
 }
 .planets {
-  margin-top: 50px;
+  margin-top: 20px;
+}
+.planets__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.planets__item {
+  flex-basis: calc((100% - 10px) / 2);
+}
+.planets__btn {
+  width: 100%;
+  font-size: 12px;
+  color: lightgray;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+}
+.planets__btn:hover {
+  scale: 1.05;
+  border: 1px solid rgb(255, 217, 0);
+}
+
+.people {
+  margin-top: 20px;
+}
+.people__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.people__item {
+  flex-basis: calc((100% - 10px) / 2);
+}
+.people__btn {
+  width: 100%;
+  font-size: 12px;
+  color: lightgray;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  cursor: pointer;
+}
+.people__btn:hover {
+  scale: 1.05;
+  border: 1px solid rgb(255, 217, 0);
+}
+
+.planets {
+  margin-top: 20px;
 }
 .planets__list {
   display: flex;
