@@ -32,6 +32,10 @@ function fetchPeople(page) {
     closeButton : document.getElementById("close"),
     apiUrl : `https://swapi.dev/api/people/?page=${page}`,
 
+/*---------------------------------------------------------------------------*/
+/*---------------------------- DOM para el modal ----------------------------*/
+/*---------------------------------------------------------------------------*/
+
     headerModal : document.getElementById("header"),
     birth_year : document.getElementById("birth_year"),
     eye_color : document.getElementById("eye_color"),
@@ -108,47 +112,47 @@ function fetchPeople(page) {
             });
           }
 
-          // if (!people.starships || people.starships.length === 0) {
-          //   console.log("Sin species");
-          // } else {
-          //   const starships = document.getElementById("starships");
-          //   starships.innerHTML = "";
-          //   people.starships.map((starship) => {
-          //     fetch(starship)
-          //       .then(response => response.json())
-          //       .then(starshipsData => {
-          //         const option = document.createElement("option");
-          //         option.classList.add("modal__option");
-          //         option.value = starshipsData.name; 
-          //         option.text = starshipsData.name; 
-          //         starships.appendChild(option);
-          //       })
-          //       .catch(error => {
-          //         console.error("Error al obtener datos de la vehicles:", error);
-          //       });
-          //   });
-          // }
+          if (!people.starships || people.starships.length === 0) {
+            console.log("Sin species");
+          } else {
+            const starships = document.getElementById("starships");
+            starships.innerHTML = "";
+            people.starships.map((starship) => {
+              fetch(starship)
+                .then(response => response.json())
+                .then(starshipsData => {
+                  const option = document.createElement("option");
+                  option.classList.add("modal__option");
+                  option.value = starshipsData.name; 
+                  option.text = starshipsData.name; 
+                  starships.appendChild(option);
+                })
+                .catch(error => {
+                  console.error("Error al obtener datos de la vehicles:", error);
+                });
+            });
+          }
 
-          // if (!people.vehicles || people.vehicles.length === 0) {
-          //   console.log("Sin species");
-          // } else {
-          //   const vehicles = document.getElementById("vehicles");
-          //   vehicles.innerHTML = "";
-          //   people.vehicles.map((vehicle) => {
-          //     fetch(vehicle)
-          //       .then(response => response.json())
-          //       .then(vehiclesData => {
-          //         const option = document.createElement("option");
-          //         option.classList.add("modal__option");
-          //         option.value = vehiclesData.name; 
-          //         option.text = vehiclesData.name; 
-          //         vehicles.appendChild(option);
-          //       })
-          //       .catch(error => {
-          //         console.error("Error al obtener datos de la vehicles:", error);
-          //       });
-          //   });
-          // }
+          if (!people.vehicles || people.vehicles.length === 0) {
+            console.log("Sin species");
+          } else {
+            const vehicles = document.getElementById("vehicles");
+            vehicles.innerHTML = "";
+            people.vehicles.map((vehicle) => {
+              fetch(vehicle)
+                .then(response => response.json())
+                .then(vehiclesData => {
+                  const option = document.createElement("option");
+                  option.classList.add("modal__option");
+                  option.value = vehiclesData.name; 
+                  option.text = vehiclesData.name; 
+                  vehicles.appendChild(option);
+                })
+                .catch(error => {
+                  console.error("Error al obtener datos de la vehicles:", error);
+                });
+            });
+          }
 
         });
         row.appendChild(button);

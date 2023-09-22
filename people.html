@@ -28,6 +28,9 @@
       </header>
 
       <main class="main">
+        <!-- <h1 class="main__title">SWAPI</h1>
+        <p class="main__paragraph">The Star Wars API</p> -->
+
         <section class="section">
           <nav class="nav">
             <ul class="nav__list">
@@ -41,10 +44,10 @@
                 <a href="./planets.html" class="nav__link">Planets</a>
               </li>
               <li class="nav__item">
-                <a href="./spacies.html" class="nav__link">Species</a>
+                <a href="./species.html" class="nav__link">Species</a>
               </li>
               <li class="nav__item">
-                <a href="./startships.html" class="nav__link">Startships</a>
+                <a href="./startships.html" class="nav__link">Starships</a>
               </li>
               <li class="nav__item">
                 <a href="./vehicles.html" class="nav__link">Vehicles</a>
@@ -52,9 +55,9 @@
             </ul>
           </nav>
 
-          <h2 class="main__title">Characters</h2>
-
+          
           <div class="people">
+            <h2 class="people__title">Characters</h2>
             <div class="spinner" id="globalLoading"></div>
             <ul id="peopleList" class="people__list"></ul>
           </div>
@@ -69,60 +72,60 @@
               <div class="modal__wrapper">
                 <ul class="modal__list">
                   <li class="modal__item">
-                    <p class="modal__paragraph">Birth year: 
+                    <p class="modal__paragraph">Birth year : 
                       <span class="modal__paragraph modal__paragraph--api"  id="birth_year"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Eye color: 
+                    <p class="modal__paragraph">Eye color : 
                       <span class="modal__paragraph modal__paragraph--api"  id="eye_color"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Gender: 
+                    <p class="modal__paragraph">Gender : 
                         <span class="modal__paragraph modal__paragraph--api"  id="gender"></span >
                       </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Hair color: 
+                    <p class="modal__paragraph">Hair color : 
                       <span class="modal__paragraph modal__paragraph--api"  id="hair_color"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Height: 
+                    <p class="modal__paragraph">Height : 
                       <span class="modal__paragraph modal__paragraph--api"  id="height"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Homeworld: 
+                    <p class="modal__paragraph">Homeworld : 
                       <span class="modal__paragraph modal__paragraph--api"  id="homeworld"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Mass: 
+                    <p class="modal__paragraph">Mass : 
                       <span class="modal__paragraph modal__paragraph--api"  id="mass"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Skin color: 
+                    <p class="modal__paragraph">Skin color : 
                       <span class="modal__paragraph modal__paragraph--api"  id="skin"></span >
                     </p>
                   </li>
                   <li class="modal__item">
                     <div class="modal__selectCont">
-                      <p class="modal__paragraph">Species: </p>
-                      <select name="Spacies" id="species" class="modal__select"></select>
+                      <p class="modal__paragraph">Species : </p>
+                      <select name="species" id="species" class="modal__select"></select>
                     </div>
                   </li>
                   <li class="modal__item">
                     <div class="modal__selectCont">
-                      <p class="modal__paragraph">Starships: </p>
+                      <p class="modal__paragraph">Starships : </p>
                       <select name="Starships" id="starships" class="modal__select"></select>
                     </div>
                   </li>
                   <li class="modal__item">
                     <div class="modal__selectCont">
-                      <p class="modal__paragraph">Vehicles: </p>
+                      <p class="modal__paragraph">Vehicles : </p>
                       <select name="Vehicles" id="vehicles" class="modal__select"></select>
                     </div>
                   </li>
@@ -132,6 +135,7 @@
           </div>
         </section>
       </main>
+
       <footer class="footer">
         <div class="footer__pag">
           <button type="button" id="prev" class="footer__btn">&#171</button>

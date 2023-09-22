@@ -1,13 +1,15 @@
 @use '../sass/Components/globales';
 @use '../sass/Components/header';
-@use '../sass/Components/main';
-@use '../sass/Components/footer';
-@use '../sass/Components/modal';
-@use '../sass/Components/people';
 @use '../sass/Components/nav';
-@use '../sass/Components/films';
-@use '../sass/Components/description';
+@use '../sass/Components/main';
+@use '../sass/Components/modal';
+@use '../sass/Components/footer';
+@use '../sass/Components/description';// index 
+
 @use '../sass/Components/search';
+@use '../sass/Components/films';
+@use '../sass/Components/people';
 @use '../sass/Components/planets';
-@import "../sass//Components/people";
-@import "../sass/Components/planets";
+@use '../sass/Components/species';
+@use '../sass/Components/starships';
+@use '../sass/Components/vehicles';

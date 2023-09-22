@@ -41,10 +41,10 @@
                 <a href="./planets.html" class="nav__link active">Planets</a>
               </li>
               <li class="nav__item">
-                <a href="./spacies.html" class="nav__link">Species</a>
+                <a href="./species.html" class="nav__link">Species</a>
               </li>
               <li class="nav__item">
-                <a href="./startships.html" class="nav__link">Startships</a>
+                <a href="./startships.html" class="nav__link">Starships</a>
               </li>
               <li class="nav__item">
                 <a href="./vehicles.html" class="nav__link">Vehicles</a>
@@ -56,7 +56,7 @@
 
           <div class="planets">
             <div class="spinner" id="globalLoading"></div>
-            <ul id="peopleList" class="planets__list"></ul>
+            <ul id="planetsList" class="planets__list"></ul>
           </div>
 
           <div id="myModal" class="modal">
@@ -69,83 +69,67 @@
               <div class="modal__wrapper">
                 <ul class="modal__list">
                   <li class="modal__item">
-                    <p class="modal__paragraph">Climate: 
+                    <p class="modal__paragraph">Climate : 
                       <span class="modal__paragraph modal__paragraph--api"  id="climate"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Created: 
+                    <p class="modal__paragraph">Created : 
                       <span class="modal__paragraph modal__paragraph--api"  id="created"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Diameter: 
+                    <p class="modal__paragraph">Diameter : 
                         <span class="modal__paragraph modal__paragraph--api"  id="diameter"></span >
                       </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Edited: 
+                    <p class="modal__paragraph">Edited : 
                       <span class="modal__paragraph modal__paragraph--api"  id="edited"></span >
                     </p>
                   </li>
                   <li class="modal__item">
                     <div class="modal__selectCont">
-                      <p class="modal__paragraph">Films: </p>
-                      <select name="Spacies" id="films" class="modal__select"></select>
+                      <p class="modal__paragraph">Films : </p>
+                      <select name="films" id="films" class="modal__select"></select>
                     </div>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Gravity: 
+                    <p class="modal__paragraph">Gravity : 
                       <span class="modal__paragraph modal__paragraph--api"  id="gravity"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Orbital period: 
+                    <p class="modal__paragraph">Orbital period : 
                       <span class="modal__paragraph modal__paragraph--api"  id="orbital"></span >
                     </p>
                   </li>   
                   <li class="modal__item">
-                    <p class="modal__paragraph">Population: 
+                    <p class="modal__paragraph">Population : 
                       <span class="modal__paragraph modal__paragraph--api"  id="population"></span >
                     </p>
                   </li>
                   <li class="modal__item">
                     <div class="modal__selectCont">
-                      <p class="modal__paragraph">Residents: </p>
-                      <select name="Spacies" id="residents" class="modal__select"></select>
+                      <p class="modal__paragraph">Residents : </p>
+                      <select name="residents" id="residents" class="modal__select"></select>
                     </div>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Rotation period: 
+                    <p class="modal__paragraph">Rotation period : 
                       <span class="modal__paragraph modal__paragraph--api"  id="rotation"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Surface water: 
+                    <p class="modal__paragraph">Surface water : 
                       <span class="modal__paragraph modal__paragraph--api"  id="surfaceWater"></span >
                     </p>
                   </li>
                   <li class="modal__item">
-                    <p class="modal__paragraph">Terrain: 
+                    <p class="modal__paragraph">Terrain : 
                       <span class="modal__paragraph modal__paragraph--api"  id="terrain"></span >
                     </p>
                   </li>
-
-
-
-                  <!-- para eliminar -->
-                  <!-- <li class="modal__item">
-                    <div class="modal__selectCont">
-                      <p class="modal__paragraph">Starships: </p>
-                      <select name="Starships" id="starships" class="modal__select"></select>
-                    </div>
-                  </li>
-                  <li class="modal__item">
-                    <div class="modal__selectCont">
-                      <p class="modal__paragraph">Vehicles: </p>
-                      <select name="Vehicles" id="vehicles" class="modal__select"></select>
-                    </div>
-                  </li> -->
                 </ul>
               </div>
             </div>

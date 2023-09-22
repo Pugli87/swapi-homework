@@ -1,9 +1,11 @@
 .Header {
-  //font-size: 14px;
   padding: 10px;
   display: flex;
   justify-content: space-around;
   background-color:rgba(0, 0, 0, 0.6);
+  @media (min-width: 767px) {
+    font-size: 18px;
+  }
 
   &__title{
     text-align: center;
@@ -41,6 +43,11 @@
       border: 1px solid #fd0000;
       color: rgb(255, 217, 0);
       text-decoration: underline;
+    }
+  }
+  &__p{
+    @media (min-width: 767px) {
+      font-size: 14px;
     }
   }
 }

@@ -26,7 +26,7 @@ pagination.next.addEventListener("click", nextPage);
 
 function fetchPlanets(page) {
   const elements = {
-    peopleList: document.getElementById("peopleList"),
+    planetsList: document.getElementById("planetsList"),
     modal : document.getElementById("myModal"),
     closeButton : document.getElementById("close"),
     apiUrl : `https://swapi.dev/api/planets/?page=${page}`,
@@ -65,37 +65,43 @@ function fetchPlanets(page) {
       
       console.log(data);
       pagination.span.textContent = currentPage;
-      elements.peopleList.innerHTML = "";
+      elements.planetsList.innerHTML = "";
       
-      data.results.forEach((people) => {
+      data.results.forEach((planet) => {
         const row = document.createElement("li");
-        row.classList.add("people__item");
+        row.classList.add("planets__item");
         
         const button = document.createElement("button");
-        button.textContent = people.name;
-        button.classList.add("people__btn");
+        button.textContent = planet.name;
+        button.classList.add("planets__btn");
         button.addEventListener("click", () => {
           
         elements.modal.style.display = "flex";
-        elements.headerModal.textContent = people.name;
-        elements.climate.textContent = people.climate;
-        elements.created.textContent = people.created;
-        elements.diameter.textContent = people.diameter;
-        elements.edited.textContent = people.edited;
+        elements.headerModal.textContent = planet.name;
+        elements.climate.textContent = planet.climate;
 
-        elements.gravity.textContent = people.gravity;
-        elements.orbital.textContent = people.orbital_period;
-        elements.population.textContent = people.population;
-        elements.rotation.textContent = people.rotation_period;
-        elements.surfaceWater.textContent = people.surface_water;
-        elements.terrain.textContent = people.terrain;
+        const createdIndex = planet.created.indexOf("T");
+        const createdResult = planet.created.substring(0, createdIndex);
+        elements.created.textContent = createdResult;
 
-        if (!people.residents || people.residents.length === 0) {
+        elements.diameter.textContent = planet.diameter;
+        const editedIndex = planet.edited.indexOf("T");
+        const editedResult = planet.edited.substring(0, editedIndex);
+        elements.edited.textContent = editedResult;
+
+        elements.gravity.textContent = planet.gravity;
+        elements.orbital.textContent = planet.orbital_period;
+        elements.population.textContent = planet.population;
+        elements.rotation.textContent = planet.rotation_period;
+        elements.surfaceWater.textContent = planet.surface_water;
+        elements.terrain.textContent = planet.terrain;
+
+        if (!planet.residents || planet.residents.length === 0) {
           console.log("Sin residents");
         }else{
           residents.innerHTML = "";
           
-          people.residents.map((resident) => {
+          planet.residents.map((resident) => {
             fetch(resident)
               .then(response => response.json())
               .then(residentsData => {
@@ -111,12 +117,12 @@ function fetchPlanets(page) {
               });
             });
           }
-        if (!people.films || people.films.length === 0) {
+        if (!planet.films || planet.films.length === 0) {
           console.log("Sin films");
         }else{
           films.innerHTML = "";
           
-          people.films.map((film) => {
+          planet.films.map((film) => {
             fetch(film)
               .then(response => response.json())
               .then(filmsData => {
@@ -135,7 +141,7 @@ function fetchPlanets(page) {
 
         });
         row.appendChild(button);
-        elements.peopleList.appendChild(row);
+        elements.planetsList.appendChild(row);
       });
       hideGlobalLoading();
     })
