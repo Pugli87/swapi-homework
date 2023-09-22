@@ -55,7 +55,6 @@ a {
 
 .section {
   max-width: 420px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -615,9 +614,9 @@ a {
 }
 .vehicles__btn {
   width: 100%;
-  font-size: 12px;
+  font-size: 11px;
   color: lightgray;
-  padding: 5px;
+  padding: 5px 1px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   cursor: pointer;

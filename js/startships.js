@@ -37,14 +37,22 @@ function fetchstarships(page) {
 /*---------------------------------------------------------------------------*/
 
     headerModal : document.getElementById("header"),
-    birth_year : document.getElementById("birth_year"),
-    eye_color : document.getElementById("eye_color"),
-    gender : document.getElementById("gender"),
-    hair_color : document.getElementById("hair_color"),
-    height : document.getElementById("height"),
-    homeworld : document.getElementById("homeworld"),
-    mass : document.getElementById("mass"),
-    skin : document.getElementById("skin"),
+    MGLT : document.getElementById("MGLT"),
+    cargo_capacity : document.getElementById("cargo_capacity"),
+    consumables : document.getElementById("consumables"),
+    cost_in_credits : document.getElementById("cost_in_credits"),
+    created : document.getElementById("created"),
+    crew : document.getElementById("crew"),
+    edited : document.getElementById("edited"),
+    films : document.getElementById("films"),
+    hyperdrive_rating : document.getElementById("hyperdrive_rating"),
+    length : document.getElementById("length"),
+    manufacturer : document.getElementById("manufacturer"),
+    max_atmosphering_speed : document.getElementById("max_atmosphering_speed"),
+    model : document.getElementById("model"),
+    passengers : document.getElementById("passengers"),
+    pilots : document.getElementById("pilots"),
+    starship_class : document.getElementById("starship_class"),
   }
   
   elements.closeButton.addEventListener("click", () => {
@@ -67,92 +75,80 @@ function fetchstarships(page) {
       pagination.span.textContent = currentPage;
       elements.starshipsList.innerHTML = "";
       
-      data.results.forEach((people) => {
+      data.results.forEach((starship) => {
         const row = document.createElement("li");
-        row.classList.add("people__item");
+        row.classList.add("starships__item");
         
         const button = document.createElement("button");
-        button.textContent = people.name;
-        button.classList.add("people__btn");
+        button.textContent = starship.name;
+        button.classList.add("starships__btn");
         button.addEventListener("click", () => {
           
         elements.modal.style.display = "flex";
-        elements.headerModal.textContent = people.name;
-        elements.birth_year.textContent = people.birth_year;
-        elements.eye_color.textContent = people.eye_color;
-        elements.gender.textContent = people.gender;
-        elements.hair_color.textContent = people.hair_color;
-        elements.height.textContent = people.height + " Cm";
-        const startIndex = people.homeworld.indexOf("planets/");
-        const result = people.homeworld.substring(startIndex);
-        elements.homeworld.textContent = result;
-        elements.mass.textContent = people.mass;
-        elements.skin.textContent = people.skin_color;
+        elements.headerModal.textContent = starship.name;
 
-        if (!people.species || people.species.length === 0) {
-          console.log("Sin species");
+        elements.MGLT.textContent = starship.MGLT;
+        elements.cargo_capacity.textContent = starship.cargo_capacity;
+        elements.consumables.textContent = starship.consumables;
+        elements.cost_in_credits.textContent = starship.cost_in_credits;
+        const createdIndex = starship.created.indexOf("T");
+        const createdresult = starship.created.substring(0, createdIndex);
+        elements.created.textContent = createdresult;
+        elements.crew.textContent = starship.crew;
+        const editedIndex = starship.edited.indexOf("T");
+        const editedresult = starship.edited.substring(0, editedIndex);
+        elements.edited.textContent = editedresult;
+        elements.length.textContent = starship.length;
+        elements.manufacturer.textContent = starship.manufacturer;
+        elements.hyperdrive_rating.textContent = starship.hyperdrive_rating;
+        elements.max_atmosphering_speed.textContent = starship.max_atmosphering_speed;
+        elements.model.textContent = starship.model;
+        elements.passengers.textContent = starship.passengers;
+        elements.starship_class.textContent = starship.starship_class;
+
+        if (!starship.films || starship.films.length === 0) {
+          console.log("Sin films");
         }else{
-          const species = document.getElementById("species");
-          species.innerHTML = "";
+          films.innerHTML = "";
           
-          people.species.map((specie) => {
-            fetch(specie)
+          starship.films.map((film) => {
+            fetch(film)
               .then(response => response.json())
-              .then(speciesData => {
+              .then(filmsData => {
                 const option = document.createElement("option");
-                option.classLstarshipsist.add("modal__option");
-                option.value = speciesData.name; 
-                option.text = speciesData.name; 
+                option.classList.add("modal__option");
+                option.value = filmsData.title; 
+                option.text = filmsData.title; 
 
-                species.appendChild(option);
+                films.appendChild(option);
               })
               .catch(error => {
                 console.error("Error al obtener datos de la especie:", error);
               });
             });
-          }
+        }
 
-          if (!people.starships || people.starships.length === 0) {
-            console.log("Sin species");
-          } else {
-            const starships = document.getElementById("starships");
-            starships.innerHTML = "";
-            people.starships.map((starship) => {
-              fetch(starship)
-                .then(response => response.json())
-                .then(starshipsData => {
-                  const option = document.createElement("option");
-                  option.classList.add("modal__option");
-                  option.value = starshipsData.name; 
-                  option.text = starshipsData.name; 
-                  starships.appendChild(option);
-                })
-                .catch(error => {
-                  console.error("Error al obtener datos de la vehicles:", error);
-                });
-            });
-          }
+        if (!starship.pilots || starship.pilots.length === 0) {
+          console.log("Sin pilots");
+        }else{
+          pilots.innerHTML = "";
+          
+          starship.pilots.map((pilot) => {
+            fetch(pilot)
+              .then(response => response.json())
+              .then(pilotsData => {
+                const option = document.createElement("option");
+                option.classList.add("modal__option");
+                option.value = pilotsData.name; 
+                option.text = pilotsData.name; 
 
-          if (!people.vehicles || people.vehicles.length === 0) {
-            console.log("Sin species");
-          } else {
-            const vehicles = document.getElementById("vehicles");
-            vehicles.innerHTML = "";
-            people.vehicles.map((vehicle) => {
-              fetch(vehicle)
-                .then(response => response.json())
-                .then(vehiclesData => {
-                  const option = document.createElement("option");
-                  option.classList.add("modal__option");
-                  option.value = vehiclesData.name; 
-                  option.text = vehiclesData.name; 
-                  vehicles.appendChild(option);
-                })
-                .catch(error => {
-                  console.error("Error al obtener datos de la vehicles:", error);
-                });
+                pilots.appendChild(option);
+              })
+              .catch(error => {
+                console.error("Error al obtener datos de la especie:", error);
+              });
             });
-          }
+        }
 
         });
         row.appendChild(button);
