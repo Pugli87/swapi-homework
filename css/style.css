@@ -271,7 +271,7 @@ a {
   color: rgb(255, 217, 0);
 }
 .modal__list {
-  padding: 30px 15px;
+  padding: 30px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -307,6 +307,7 @@ a {
   color: rgb(255, 217, 0);
 }
 .modal__paragraph--api {
+  margin-left: 10px;
   font-size: 11px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
