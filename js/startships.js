@@ -26,6 +26,95 @@ pagination.prev.addEventListener("click", prevPage);
 pagination.next.addEventListener("click", nextPage);
 
 function fetchstarships(page) {
+
+  function renderData(data) {
+    // Renderiza los datos en la interfaz
+    console.log(data, currentPage);
+    pagination.span.textContent = currentPage;
+    elements.starshipsList.innerHTML = "";
+    
+    data.results.forEach((starship) => {
+      const row = document.createElement("li");
+      row.classList.add("starships__item");
+      
+      const button = document.createElement("button");
+      button.textContent = starship.name;
+      button.classList.add("starships__btn");
+      button.addEventListener("click", () => {
+        
+      elements.modal.style.display = "flex";
+      elements.headerModal.textContent = starship.name;
+
+      elements.MGLT.textContent = starship.MGLT;
+      elements.cargo_capacity.textContent = starship.cargo_capacity;
+      elements.consumables.textContent = starship.consumables;
+      elements.cost_in_credits.textContent = starship.cost_in_credits;
+      const createdIndex = starship.created.indexOf("T");
+      const createdresult = starship.created.substring(0, createdIndex);
+      elements.created.textContent = createdresult;
+      elements.crew.textContent = starship.crew;
+      const editedIndex = starship.edited.indexOf("T");
+      const editedresult = starship.edited.substring(0, editedIndex);
+      elements.edited.textContent = editedresult;
+      elements.length.textContent = starship.length;
+      elements.manufacturer.textContent = starship.manufacturer;
+      elements.hyperdrive_rating.textContent = starship.hyperdrive_rating;
+      elements.max_atmosphering_speed.textContent = starship.max_atmosphering_speed;
+      elements.model.textContent = starship.model;
+      elements.passengers.textContent = starship.passengers;
+      elements.starship_class.textContent = starship.starship_class;
+
+      if (!starship.films || starship.films.length === 0) {
+        console.log("Sin films");
+      }else{
+        films.innerHTML = "";
+        
+        starship.films.map((film) => {
+          fetch(film)
+            .then(response => response.json())
+            .then(filmsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = filmsData.title; 
+              option.text = filmsData.title; 
+
+              films.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          });
+      }
+
+      if (!starship.pilots || starship.pilots.length === 0) {
+        console.log("Sin pilots");
+      }else{
+        pilots.innerHTML = "";
+        
+        starship.pilots.map((pilot) => {
+          fetch(pilot)
+            .then(response => response.json())
+            .then(pilotsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = pilotsData.name; 
+              option.text = pilotsData.name; 
+
+              pilots.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          });
+      }
+
+      });
+      row.appendChild(button);
+      elements.starshipsList.appendChild(row);
+    });
+    hideGlobalLoading();
+  }
+
   const elements = {
     starshipsList: document.getElementById("starshipsList"),
     modal : document.getElementById("myModal"),
@@ -64,103 +153,33 @@ function fetchstarships(page) {
       elements.modal.style.display = "none";
     }
   });
+
+  // Intenta obtener los datos de la caché local
+  const cacheKey = `swapi_starships_page_${page}`;
+  const cachedData = localStorage.getItem(cacheKey);
+
+  if (cachedData) {
+    // Si los datos están en caché, utiliza los datos en caché en lugar de hacer una solicitud a la API
+    const data = JSON.parse(cachedData);
+    console.log(`Datos obtenidos desde la caché local para la página ${page}`);
+    renderData(data);
+  } else {
+    // Si los datos no están en caché, realiza una solicitud a la API
   
   showGlobalLoading();
 
   fetch(elements.apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      
-      console.log(data, currentPage);
-      pagination.span.textContent = currentPage;
-      elements.starshipsList.innerHTML = "";
-      
-      data.results.forEach((starship) => {
-        const row = document.createElement("li");
-        row.classList.add("starships__item");
-        
-        const button = document.createElement("button");
-        button.textContent = starship.name;
-        button.classList.add("starships__btn");
-        button.addEventListener("click", () => {
-          
-        elements.modal.style.display = "flex";
-        elements.headerModal.textContent = starship.name;
-
-        elements.MGLT.textContent = starship.MGLT;
-        elements.cargo_capacity.textContent = starship.cargo_capacity;
-        elements.consumables.textContent = starship.consumables;
-        elements.cost_in_credits.textContent = starship.cost_in_credits;
-        const createdIndex = starship.created.indexOf("T");
-        const createdresult = starship.created.substring(0, createdIndex);
-        elements.created.textContent = createdresult;
-        elements.crew.textContent = starship.crew;
-        const editedIndex = starship.edited.indexOf("T");
-        const editedresult = starship.edited.substring(0, editedIndex);
-        elements.edited.textContent = editedresult;
-        elements.length.textContent = starship.length;
-        elements.manufacturer.textContent = starship.manufacturer;
-        elements.hyperdrive_rating.textContent = starship.hyperdrive_rating;
-        elements.max_atmosphering_speed.textContent = starship.max_atmosphering_speed;
-        elements.model.textContent = starship.model;
-        elements.passengers.textContent = starship.passengers;
-        elements.starship_class.textContent = starship.starship_class;
-
-        if (!starship.films || starship.films.length === 0) {
-          console.log("Sin films");
-        }else{
-          films.innerHTML = "";
-          
-          starship.films.map((film) => {
-            fetch(film)
-              .then(response => response.json())
-              .then(filmsData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = filmsData.title; 
-                option.text = filmsData.title; 
-
-                films.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de la especie:", error);
-              });
-            });
-        }
-
-        if (!starship.pilots || starship.pilots.length === 0) {
-          console.log("Sin pilots");
-        }else{
-          pilots.innerHTML = "";
-          
-          starship.pilots.map((pilot) => {
-            fetch(pilot)
-              .then(response => response.json())
-              .then(pilotsData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = pilotsData.name; 
-                option.text = pilotsData.name; 
-
-                pilots.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de la especie:", error);
-              });
-            });
-        }
-
-        });
-        row.appendChild(button);
-        elements.starshipsList.appendChild(row);
-      });
-      hideGlobalLoading();
+      // Almacena los datos en caché local para su uso posterior
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      renderData(data);
     })
     .catch((error) => {
         console.error("Error:", error);
     });
+  }
 }
-
 
 fetchstarships(currentPage);
 

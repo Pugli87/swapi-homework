@@ -76,7 +76,6 @@ function fetchPlanets(page) {
     .then((data) => {
       // Almacena los datos en caché local para su uso posterior
       localStorage.setItem(cacheKey, JSON.stringify(data));
-      console.log(`Datos almacenados en caché local para la página ${page}`);
       renderData(data);
     })
     .catch((error) => {

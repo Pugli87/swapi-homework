@@ -27,46 +27,9 @@ pagination.prev.addEventListener("click", prevPage);
 pagination.next.addEventListener("click", nextPage);
 
 function fetchspecies(page) {
-  const elements = {
-    speciesList: document.getElementById("speciesList"),
-    modal : document.getElementById("myModal"),
-    closeButton : document.getElementById("close"),
-    apiUrl : `https://swapi.dev/api/species/?page=${page}`,
-/*---------------------------------------------------------------------------*/
-/*---------------------------- DOM para el modal ----------------------------*/
-/*---------------------------------------------------------------------------*/
-    headerModal : document.getElementById("header"),
-    average_height : document.getElementById("average_height"),
-    average_lifespan : document.getElementById("average_lifespan"),
-    classification : document.getElementById("classification"),
-    created : document.getElementById("created"),
-    designation : document.getElementById("designation"),
-    edited : document.getElementById("edited"),
-    eye_colors : document.getElementById("eye_colors"),
-    films : document.getElementById("films"),
-    hair_colors : document.getElementById("hair_colors"),
-    homeworld : document.getElementById("homeworld"),
-    language : document.getElementById("language"),
-    skin_colors : document.getElementById("skin_colors"),
-  }
-  
-  elements.closeButton.addEventListener("click", () => {
-    elements.modal.style.display = "none";
-  });
-  
-  elements.modal.addEventListener("click", (e) => {// cierre de modal al dar click fuerA DE EL
-    if (e.target === elements.modal) {
-      elements.modal.style.display = "none";
-    }
-  });
-  
-  showGlobalLoading();
-
-  fetch(elements.apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      
-      console.log(data,);
+  function renderData(data) {
+    // Renderiza los datos en la interfaz
+    console.log(data,);
       pagination.span.textContent = currentPage;
       elements.speciesList.innerHTML = "";
       
@@ -152,10 +115,67 @@ function fetchspecies(page) {
         elements.speciesList.appendChild(row);
       });
       hideGlobalLoading();
+  }
+
+  const elements = {
+    speciesList: document.getElementById("speciesList"),
+    modal : document.getElementById("myModal"),
+    closeButton : document.getElementById("close"),
+    apiUrl : `https://swapi.dev/api/species/?page=${page}`,
+/*---------------------------------------------------------------------------*/
+/*---------------------------- DOM para el modal ----------------------------*/
+/*---------------------------------------------------------------------------*/
+    headerModal : document.getElementById("header"),
+    average_height : document.getElementById("average_height"),
+    average_lifespan : document.getElementById("average_lifespan"),
+    classification : document.getElementById("classification"),
+    created : document.getElementById("created"),
+    designation : document.getElementById("designation"),
+    edited : document.getElementById("edited"),
+    eye_colors : document.getElementById("eye_colors"),
+    films : document.getElementById("films"),
+    hair_colors : document.getElementById("hair_colors"),
+    homeworld : document.getElementById("homeworld"),
+    language : document.getElementById("language"),
+    skin_colors : document.getElementById("skin_colors"),
+  }
+  
+  elements.closeButton.addEventListener("click", () => {
+    elements.modal.style.display = "none";
+  });
+  
+  elements.modal.addEventListener("click", (e) => {// cierre de modal al dar click fuerA DE EL
+    if (e.target === elements.modal) {
+      elements.modal.style.display = "none";
+    }
+  });
+
+  // Intenta obtener los datos de la caché local
+  const cacheKey = `swapi_species_page_${page}`;
+  const cachedData = localStorage.getItem(cacheKey);
+
+  if (cachedData) {
+    // Si los datos están en caché, utiliza los datos en caché en lugar de hacer una solicitud a la API
+    const data = JSON.parse(cachedData);
+    console.log(`Datos obtenidos desde la caché local para la página ${page}`);
+    renderData(data);
+  } else {
+    // Si los datos no están en caché, realiza una solicitud a la API
+  
+  showGlobalLoading();
+
+  fetch(elements.apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      // Almacena los datos en caché local para su uso posterior
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      renderData(data);
+      
     })
     .catch((error) => {
         console.error("Error:", error);
     });
+  }
 }
 
 fetchspecies(currentPage);

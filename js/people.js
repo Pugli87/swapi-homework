@@ -2,6 +2,7 @@
 import { showGlobalLoading, hideGlobalLoading } from './app.js';
 
 let currentPage = 1;
+
 const pagination = {
   prev: document.getElementById("prev"),
   next: document.getElementById("next"),
@@ -9,9 +10,10 @@ const pagination = {
 }
 
 function nextPage() {
-  currentPage += 1;
-  fetchPeople(currentPage);
-  pagination.span.textContent = currentPage;
+    currentPage += 1;
+    fetchPeople(currentPage);
+    pagination.span.textContent = currentPage;
+
 }
 
 function prevPage() {
@@ -133,11 +135,9 @@ function fetchPeople(page) {
     modal : document.getElementById("myModal"),
     closeButton : document.getElementById("close"),
     apiUrl : `https://swapi.dev/api/people/?page=${page}`,
-
-/*---------------------------------------------------------------------------*/
-/*---------------------------- DOM para el modal ----------------------------*/
-/*---------------------------------------------------------------------------*/
-
+    /*---------------------------------------------------------------------------*/
+    /*---------------------------- DOM para el modal ----------------------------*/
+    /*---------------------------------------------------------------------------*/
     headerModal : document.getElementById("header"),
     birth_year : document.getElementById("birth_year"),
     eye_color : document.getElementById("eye_color"),
@@ -160,7 +160,7 @@ function fetchPeople(page) {
   });
 
   // Intenta obtener los datos de la caché local
-  const cacheKey = `swapi_people_page_${page}`;
+  const cacheKey = `swapi.dev_api_people_page_${page}`;
   const cachedData = localStorage.getItem(cacheKey);
 
   if (cachedData) {
@@ -177,7 +177,6 @@ function fetchPeople(page) {
       .then((data) => {
         // Almacena los datos en caché local para su uso posterior
         localStorage.setItem(cacheKey, JSON.stringify(data));
-        console.log(`Datos almacenados en caché local para la página ${page}`);
         renderData(data);
       })
       .catch((error) => {

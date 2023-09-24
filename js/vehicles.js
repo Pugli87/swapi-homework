@@ -26,6 +26,93 @@ pagination.prev.addEventListener("click", prevPage);
 pagination.next.addEventListener("click", nextPage);
 
 function fetchvehicles(page) {
+
+  function renderData(data) {
+    // Renderiza los datos en la interfaz
+    console.log(data, currentPage);
+    pagination.span.textContent = currentPage;
+    elements.vehiclesList.innerHTML = "";
+    
+    data.results.forEach((vehicle) => {
+      const row = document.createElement("li");
+      row.classList.add("vehicles__item");
+      
+      const button = document.createElement("button");
+      button.textContent = vehicle.name;
+      button.classList.add("vehicles__btn");
+      button.addEventListener("click", () => {
+        
+      elements.modal.style.display = "flex";
+      elements.headerModal.textContent = vehicle.name;
+
+      elements.cargo_capacity.textContent = vehicle.cargo_capacity;
+      elements.consumables.textContent = vehicle.consumables;
+      elements.cost_in_credits.textContent = vehicle.cost_in_credits;
+      const createdIndex = vehicle.created.indexOf("T");
+      const createdresult = vehicle.created.substring(0, createdIndex);
+      elements.created.textContent = createdresult;
+      elements.crew.textContent = vehicle.crew;
+      const editedIndex = vehicle.edited.indexOf("T");
+      const editedresult = vehicle.edited.substring(0, editedIndex);
+      elements.edited.textContent = editedresult;
+      elements.length.textContent = vehicle.length;
+      elements.manufacturer.textContent = vehicle.manufacturer;
+      elements.max_atmosphering_speed.textContent = vehicle.max_atmosphering_speed;
+      elements.model.textContent = vehicle.model;
+      elements.passengers.textContent = vehicle.passengers;
+      elements.vehicle_class.textContent = vehicle.vehicle_class;
+
+      if (!vehicle.films || vehicle.films.length === 0) {
+        console.log("Sin films");
+      }else{
+        films.innerHTML = "";
+        
+        vehicle.films.map((film) => {
+          fetch(film)
+            .then(response => response.json())
+            .then(filmsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = filmsData.title; 
+              option.text = filmsData.title; 
+
+              films.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          });
+      }
+
+      if (!vehicle.pilots || vehicle.pilots.length === 0) {
+        console.log("Sin pilots");
+      }else{
+        pilots.innerHTML = "";
+        
+        vehicle.pilots.map((pilot) => {
+          fetch(pilot)
+            .then(response => response.json())
+            .then(pilotsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = pilotsData.name; 
+              option.text = pilotsData.name; 
+
+              pilots.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          }
+        );
+      }
+    });
+      row.appendChild(button);
+      elements.vehiclesList.appendChild(row);
+      });
+      hideGlobalLoading();
+  }
+
   const elements = {
     vehiclesList: document.getElementById("vehiclesList"),
     modal : document.getElementById("myModal"),
@@ -64,99 +151,30 @@ if (e.target === elements.modal) {
 }
 });
 
-showGlobalLoading();
+  // Intenta obtener los datos de la caché local
+  const cacheKey = `swapi_vehicles_page_${page}`;
+  const cachedData = localStorage.getItem(cacheKey);
 
-fetch(elements.apiUrl)
-.then((response) => response.json())
-.then((data) => {
-  
-  console.log(data, currentPage);
-  pagination.span.textContent = currentPage;
-  elements.vehiclesList.innerHTML = "";
-  
-  data.results.forEach((vehicle) => {
-    const row = document.createElement("li");
-    row.classList.add("vehicles__item");
-    
-    const button = document.createElement("button");
-    button.textContent = vehicle.name;
-    button.classList.add("vehicles__btn");
-    button.addEventListener("click", () => {
-      
-    elements.modal.style.display = "flex";
-    elements.headerModal.textContent = vehicle.name;
+  if (cachedData) {
+    // Si los datos están en caché, utiliza los datos en caché en lugar de hacer una solicitud a la API
+    const data = JSON.parse(cachedData);
+    console.log(`Datos obtenidos desde la caché local para la página ${page}`);
+    renderData(data);
+  } else {
+    showGlobalLoading();
 
-    elements.cargo_capacity.textContent = vehicle.cargo_capacity;
-    elements.consumables.textContent = vehicle.consumables;
-    elements.cost_in_credits.textContent = vehicle.cost_in_credits;
-    const createdIndex = vehicle.created.indexOf("T");
-    const createdresult = vehicle.created.substring(0, createdIndex);
-    elements.created.textContent = createdresult;
-    elements.crew.textContent = vehicle.crew;
-    const editedIndex = vehicle.edited.indexOf("T");
-    const editedresult = vehicle.edited.substring(0, editedIndex);
-    elements.edited.textContent = editedresult;
-    elements.length.textContent = vehicle.length;
-    elements.manufacturer.textContent = vehicle.manufacturer;
-    elements.max_atmosphering_speed.textContent = vehicle.max_atmosphering_speed;
-    elements.model.textContent = vehicle.model;
-    elements.passengers.textContent = vehicle.passengers;
-    elements.vehicle_class.textContent = vehicle.vehicle_class;
-
-    if (!vehicle.films || vehicle.films.length === 0) {
-      console.log("Sin films");
-    }else{
-      films.innerHTML = "";
-      
-      vehicle.films.map((film) => {
-        fetch(film)
-          .then(response => response.json())
-          .then(filmsData => {
-            const option = document.createElement("option");
-            option.classList.add("modal__option");
-            option.value = filmsData.title; 
-            option.text = filmsData.title; 
-
-            films.appendChild(option);
-          })
-          .catch(error => {
-            console.error("Error al obtener datos de la especie:", error);
-          });
-        });
-    }
-
-    if (!vehicle.pilots || vehicle.pilots.length === 0) {
-      console.log("Sin pilots");
-    }else{
-      pilots.innerHTML = "";
-      
-      vehicle.pilots.map((pilot) => {
-        fetch(pilot)
-          .then(response => response.json())
-          .then(pilotsData => {
-            const option = document.createElement("option");
-            option.classList.add("modal__option");
-            option.value = pilotsData.name; 
-            option.text = pilotsData.name; 
-
-            pilots.appendChild(option);
-          })
-          .catch(error => {
-            console.error("Error al obtener datos de la especie:", error);
-          });
-        }
-      );
-    }
-  });
-    row.appendChild(button);
-    elements.vehiclesList.appendChild(row);
-      });
-      hideGlobalLoading();
+    fetch(elements.apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      // Almacena los datos en caché local para su uso posterior
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      renderData(data);
     })
     .catch((error) => {
-        console.error("Error:", error);
+      console.error("Error:", error);
     });
-}
+    }
+  }
 
 fetchvehicles(currentPage);
 
