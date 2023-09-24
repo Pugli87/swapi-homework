@@ -1,4 +1,5 @@
 import { showGlobalLoading, hideGlobalLoading } from './app.js';
+
 let currentPage = 1;
 const pagination = {
   prev: document.getElementById("prev"),
@@ -21,7 +22,6 @@ function prevPage() {
 }
 
 pagination.prev.addEventListener("click", prevPage);
-
 pagination.next.addEventListener("click", nextPage);
 
 function fetchPlanets(page) {
@@ -57,98 +57,116 @@ function fetchPlanets(page) {
     }
   });
   
-  showGlobalLoading();
+  // Intenta obtener los datos de la caché local
+  const cacheKey = `swapi_planets_page_${page}`;
+  const cachedData = localStorage.getItem(cacheKey);
+
+  if (cachedData) {
+  // Si los datos están en caché, utiliza los datos en caché en lugar de hacer una solicitud a la API
+    const data = JSON.parse(cachedData);
+    console.log(`Datos obtenidos desde la caché local para la página ${page}`);
+    renderData(data);
+  } else {
+  // Si los datos no están en caché, realiza una solicitud a la API
+
+    showGlobalLoading();
 
   fetch(elements.apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      
-      console.log(data);
-      pagination.span.textContent = currentPage;
-      elements.planetsList.innerHTML = "";
-      
-      data.results.forEach((planet) => {
-        const row = document.createElement("li");
-        row.classList.add("planets__item");
-        
-        const button = document.createElement("button");
-        button.textContent = planet.name;
-        button.classList.add("planets__btn");
-        button.addEventListener("click", () => {
-          
-        elements.modal.style.display = "flex";
-        elements.headerModal.textContent = planet.name;
-        elements.climate.textContent = planet.climate;
-
-        const createdIndex = planet.created.indexOf("T");
-        const createdResult = planet.created.substring(0, createdIndex);
-        elements.created.textContent = createdResult;
-
-        elements.diameter.textContent = planet.diameter;
-        const editedIndex = planet.edited.indexOf("T");
-        const editedResult = planet.edited.substring(0, editedIndex);
-        elements.edited.textContent = editedResult;
-
-        elements.gravity.textContent = planet.gravity;
-        elements.orbital.textContent = planet.orbital_period;
-        elements.population.textContent = planet.population;
-        elements.rotation.textContent = planet.rotation_period;
-        elements.surfaceWater.textContent = planet.surface_water;
-        elements.terrain.textContent = planet.terrain;
-
-        if (!planet.residents || planet.residents.length === 0) {
-          console.log("Sin residents");
-        }else{
-          residents.innerHTML = "";
-          
-          planet.residents.map((resident) => {
-            fetch(resident)
-              .then(response => response.json())
-              .then(residentsData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = residentsData.name; 
-                option.text = residentsData.name; 
-
-                residents.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de la especie:", error);
-              });
-            });
-          }
-        if (!planet.films || planet.films.length === 0) {
-          console.log("Sin films");
-        }else{
-          films.innerHTML = "";
-          
-          planet.films.map((film) => {
-            fetch(film)
-              .then(response => response.json())
-              .then(filmsData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = filmsData.title; 
-                option.text = filmsData.title; 
-
-                films.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de la especie:", error);
-              });
-            });
-          }
-
-        });
-        row.appendChild(button);
-        elements.planetsList.appendChild(row);
-      });
-      hideGlobalLoading();
+      // Almacena los datos en caché local para su uso posterior
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      console.log(`Datos almacenados en caché local para la página ${page}`);
+      renderData(data);
     })
     .catch((error) => {
         console.error("Error:", error);
     });
-}
+  }
+  function renderData(data){
+          
+    console.log(data);
+    pagination.span.textContent = currentPage;
+    elements.planetsList.innerHTML = "";
+    
+    data.results.forEach((planet) => {
+      const row = document.createElement("li");
+      row.classList.add("planets__item");
+      
+      const button = document.createElement("button");
+      button.textContent = planet.name;
+      button.classList.add("planets__btn");
+      button.addEventListener("click", () => {
+        
+      elements.modal.style.display = "flex";
+      elements.headerModal.textContent = planet.name;
+      elements.climate.textContent = planet.climate;
 
+      const createdIndex = planet.created.indexOf("T");
+      const createdResult = planet.created.substring(0, createdIndex);
+      elements.created.textContent = createdResult;
+
+      elements.diameter.textContent = planet.diameter;
+      const editedIndex = planet.edited.indexOf("T");
+      const editedResult = planet.edited.substring(0, editedIndex);
+      elements.edited.textContent = editedResult;
+
+      elements.gravity.textContent = planet.gravity;
+      elements.orbital.textContent = planet.orbital_period;
+      elements.population.textContent = planet.population;
+      elements.rotation.textContent = planet.rotation_period;
+      elements.surfaceWater.textContent = planet.surface_water;
+      elements.terrain.textContent = planet.terrain;
+
+      if (!planet.residents || planet.residents.length === 0) {
+        console.log("Sin residents");
+      }else{
+        residents.innerHTML = "";
+        
+        planet.residents.map((resident) => {
+          fetch(resident)
+            .then(response => response.json())
+            .then(residentsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = residentsData.name; 
+              option.text = residentsData.name; 
+
+              residents.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          });
+        }
+      if (!planet.films || planet.films.length === 0) {
+        console.log("Sin films");
+      }else{
+        films.innerHTML = "";
+        
+        planet.films.map((film) => {
+          fetch(film)
+            .then(response => response.json())
+            .then(filmsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = filmsData.title; 
+              option.text = filmsData.title; 
+
+              films.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de la especie:", error);
+            });
+          });
+        }
+
+      });
+      row.appendChild(button);
+      elements.planetsList.appendChild(row);
+    });
+    hideGlobalLoading();
+  }
+}
 
 fetchPlanets(currentPage);

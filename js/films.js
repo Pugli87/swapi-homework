@@ -2,6 +2,159 @@
 import { showGlobalLoading, hideGlobalLoading } from './app.js';
 
 async function fetchFilms() {
+
+  function renderData(data) {
+    // Renderiza los datos en la interfaz
+    console.log(data);
+    filmsList.innerHTML = "";
+    data.results.forEach((film) => {
+      const row = document.createElement("li");
+      row.classList.add("films__item");
+
+      const button = document.createElement("button");
+      button.textContent = film.title;
+      button.classList.add("films__btn");
+      button.addEventListener("click", () => {
+
+      modal.style.display = "flex";
+
+      headerModal.textContent = film.title;
+      filmsDescription.textContent = film.opening_crawl;
+      episode.textContent = film.episode_id;
+      director.textContent = film.director;
+      producer.textContent = film.producer;
+      release.textContent = film.release_date;
+      
+      /*------------------- input de charaters -------------------*/
+      if (!film.characters || film.characters.length === 0) {
+        console.log("Sin character");
+      }else{
+        const characters = document.getElementById("characters");
+        characters.innerHTML = "";
+        
+        film.characters.map((character) => {
+          fetch(character)
+            .then(response => response.json())
+            .then(charactersData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = charactersData.name; 
+              option.text = charactersData.name; 
+
+              characters.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de lo characters:", error);
+            });
+          });
+        }
+
+      /*------------------- input de planets -------------------*/
+      if (!film.planets || film.planets.length === 0) {
+        console.log("Sin planets");
+      }else{
+        const planets = document.getElementById("planets");
+        planets.innerHTML = "";
+        
+        film.planets.map((planet) => {
+          fetch(planet)
+          .then(response => response.json())
+          .then(planetsData => {
+              console.log(planet);
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = planetsData.name; 
+              option.text = planetsData.name; 
+
+              planets.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de los planets:", error);
+            });
+          });
+        }
+
+      /*------------------- input de starships -------------------*/
+      if (!film.starships || film.starships.length === 0) {
+        console.log("Sin starship");
+      }else{
+        const starships = document.getElementById("starships");
+        starships.innerHTML = "";
+        
+        film.starships.map((starship) => {
+          fetch(starship)
+            .then(response => response.json())
+            .then(starshipsData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = starshipsData.name; 
+              option.text = starshipsData.name; 
+
+              starships.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de los starships:", error);
+            });
+          });
+        }
+
+      /*------------------- input de vehicles -------------------*/
+      if (!film.vehicles || film.vehicles.length === 0) {
+        console.log("Sin character");
+      }else{
+        const vehicles = document.getElementById("vehicles");
+        vehicles.innerHTML = "";
+        
+        film.vehicles.map((vehicle) => {
+          fetch(vehicle)
+            .then(response => response.json())
+            .then(vehiclesData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = vehiclesData.name; 
+              option.text = vehiclesData.name; 
+
+              vehicles.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de los characters:", error);
+            });
+          });
+        }
+
+      /*------------------- input de species -------------------*/
+      if (!film.species || film.species.length === 0) {
+        console.log("Sin specie");
+      }else{
+        const species = document.getElementById("species");
+        species.innerHTML = "";
+        
+        film.species.map((specie) => {
+          fetch(specie)
+            .then(response => response.json())
+            .then(speciesData => {
+              const option = document.createElement("option");
+              option.classList.add("modal__option");
+              option.value = speciesData.name; 
+              option.text = speciesData.name; 
+
+              species.appendChild(option);
+            })
+            .catch(error => {
+              console.error("Error al obtener datos de las species:", error);
+            });
+          });
+        }
+      created.textContent = film.created;
+      edited.textContent = film.edited;
+      });
+
+      row.appendChild(button);
+      filmsList.appendChild(row);
+    });
+    hideGlobalLoading();
+  }
+
   const filmsList = document.getElementById("filmsList");
   const modal = document.getElementById("myModal");
   const closeButton = document.getElementById("close");
@@ -26,164 +179,32 @@ async function fetchFilms() {
     }
   });
   
+    // Intenta obtener los datos de la caché local
+    const cacheKey = `swapi_people_`;
+    const cachedData = localStorage.getItem(cacheKey);
+
+    if (cachedData) {
+      // Si los datos están en caché, utiliza los datos en caché en lugar de hacer una solicitud a la API
+      const data = JSON.parse(cachedData);
+      console.log(`Datos obtenidos desde la caché local`);
+      renderData(data);
+    }else{
+      // Si los datos no están en caché, realiza una solicitud a la API
+
   showGlobalLoading();
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-
-      console.log(data);
-      filmsList.innerHTML = "";
-      data.results.forEach((film) => {
-        const row = document.createElement("li");
-        row.classList.add("films__item");
-
-        const button = document.createElement("button");
-        button.textContent = film.title;
-        button.classList.add("films__btn");
-        button.addEventListener("click", () => {
-
-        modal.style.display = "flex";
-
-        headerModal.textContent = film.title;
-        filmsDescription.textContent = film.opening_crawl;
-        episode.textContent = film.episode_id;
-        director.textContent = film.director;
-        producer.textContent = film.producer;
-        release.textContent = film.release_date;
-        
-        /*------------------- input de charaters -------------------*/
-        if (!film.characters || film.characters.length === 0) {
-          console.log("Sin character");
-        }else{
-          const characters = document.getElementById("characters");
-          characters.innerHTML = "";
-          
-          film.characters.map((character) => {
-            fetch(character)
-              .then(response => response.json())
-              .then(charactersData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = charactersData.name; 
-                option.text = charactersData.name; 
-
-                characters.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de lo characters:", error);
-              });
-            });
-          }
-
-        /*------------------- input de planets -------------------*/
-        if (!film.planets || film.planets.length === 0) {
-          console.log("Sin planets");
-        }else{
-          const planets = document.getElementById("planets");
-          planets.innerHTML = "";
-          
-          film.planets.map((planet) => {
-            fetch(planet)
-            .then(response => response.json())
-            .then(planetsData => {
-                console.log(planet);
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = planetsData.name; 
-                option.text = planetsData.name; 
-
-                planets.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de los planets:", error);
-              });
-            });
-          }
-
-        /*------------------- input de starships -------------------*/
-        if (!film.starships || film.starships.length === 0) {
-          console.log("Sin starship");
-        }else{
-          const starships = document.getElementById("starships");
-          starships.innerHTML = "";
-          
-          film.starships.map((starship) => {
-            fetch(starship)
-              .then(response => response.json())
-              .then(starshipsData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = starshipsData.name; 
-                option.text = starshipsData.name; 
-
-                starships.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de los starships:", error);
-              });
-            });
-          }
-
-        /*------------------- input de vehicles -------------------*/
-        if (!film.vehicles || film.vehicles.length === 0) {
-          console.log("Sin character");
-        }else{
-          const vehicles = document.getElementById("vehicles");
-          vehicles.innerHTML = "";
-          
-          film.vehicles.map((vehicle) => {
-            fetch(vehicle)
-              .then(response => response.json())
-              .then(vehiclesData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = vehiclesData.name; 
-                option.text = vehiclesData.name; 
-
-                vehicles.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de los characters:", error);
-              });
-            });
-          }
-
-        /*------------------- input de species -------------------*/
-        if (!film.species || film.species.length === 0) {
-          console.log("Sin specie");
-        }else{
-          const species = document.getElementById("species");
-          species.innerHTML = "";
-          
-          film.species.map((specie) => {
-            fetch(specie)
-              .then(response => response.json())
-              .then(speciesData => {
-                const option = document.createElement("option");
-                option.classList.add("modal__option");
-                option.value = speciesData.name; 
-                option.text = speciesData.name; 
-
-                species.appendChild(option);
-              })
-              .catch(error => {
-                console.error("Error al obtener datos de las species:", error);
-              });
-            });
-          }
-        created.textContent = film.created;
-        edited.textContent = film.edited;
-        });
-
-        row.appendChild(button);
-        filmsList.appendChild(row);
-      });
-      hideGlobalLoading();
+      // Almacena los datos en caché local para su uso posterior
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      console.log(`Datos almacenados en caché local`);
+      renderData(data);
     })
     .catch((error) => {
         console.error("Error:", error);
     });
+  }
 }
 
 fetchFilms();
