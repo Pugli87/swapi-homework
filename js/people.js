@@ -132,7 +132,7 @@ function fetchPeople(page) {
     peopleList: document.getElementById("peopleList"),
     modal : document.getElementById("myModal"),
     closeButton : document.getElementById("close"),
-    apiUrl : `https://swapi/people/?page=${page}`,
+    apiUrl : `https://swapi.dev/api/people/?page=${page}`,
 
 /*---------------------------------------------------------------------------*/
 /*---------------------------- DOM para el modal ----------------------------*/

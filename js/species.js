@@ -1,5 +1,6 @@
 
 import { showGlobalLoading, hideGlobalLoading } from './app.js';
+
 let currentPage = 1;
 const pagination = {
   prev: document.getElementById("prev"),
